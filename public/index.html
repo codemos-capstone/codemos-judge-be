@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>CodeMos</title>
+        <meta property="og:title" content="CodeMos" />
+        <meta name="description" content="Can you successfully pilot the lander to the surface? Play instantly from your phone or computer." />
+        <meta property="og:description" content="Can you successfully pilot the lander to the surface?" />
+        <meta property="og:image:width" content="700" />
+        <meta property="og:image:height" content="700" />
+        <link rel="icon" type="image/png" href="./images/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="./images/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="./images/favicon-180x180.png" sizes="180x180" />
+        <link rel="icon" type="image/png" href="./images/favicon-270x270.png" sizes="270x270" />
+        <link rel="apple-touch-icon" href="./images/favicon-270x270.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" type="text/css" href="./style.css" />
+    </head>
+    <style type="text/css" media="screen">
+        body {
+            margin: 100px;
+            background: #02071e;
+            font: 400 18px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: antiquewhite;
+        }
+
+        .button {
+            background-color: #0a0f1c;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: 2px solid #2e9cca;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 20px auto;
+            text-decoration: none;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 0 10px #2e9cca;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2e9cca;
+            box-shadow: 0 0 20px #2e9cca;
+        }
+
+        .menus {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        @media screen and (max-width: 1080px) {
+            .menus {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        .buttons {
+            width: 100%;
+            margin: 0px 30px;
+        }
+
+        .mainpage {
+            margin: 0px auto;
+        }
+
+        .leader_board {
+            width: 100%;
+
+            margin: 0px 30px;
+            color: white;
+        }
+        .home-login-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #fff;
+            background-color: #0a0a1a;
+            box-shadow: 0 0 10px #4d4dff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration-line: none;
+        }
+        .home-logout-btn {
+            position: fixed;
+            top: 20px;
+            right: 100px;
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #fff;
+            background-color: #0a0a1a;
+            box-shadow: 0 0 10px #4d4dff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .home-mypage-btn {
+            position: fixed;
+            top: 8px;
+            right: 10px;
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .iframe-container {
+            display: flex;
+        }
+
+        .iframe-container iframe {
+            width: 50%;
+            border: none;
+        }
+
+        .iframe-container iframe {
+            height: 400px;
+            border-radius: 10px;
+        }
+
+        .profile-image {
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid #4d4dff;
+            box-shadow: 0 0 10px #4d4dff;
+        }
+        .profile {
+            object-fit: cover;
+            width: 40px;
+            height: 30px;
+        }
+    </style>
+    <body>
+        <div id="docs"></div>
+    </body>
