@@ -1,10 +1,9 @@
-import Docs from "components/docs"
+import MainPage from "components/MainPage"
 
 export default function App(){
     return(
         <div>
-        <h1 style={{color: 'white'}}>Main Page</h1>
-        <Docs/>
+        <MainPage/>
         </div>
     )
 }

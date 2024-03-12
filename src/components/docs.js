@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import './docs.css'
+import './Docs.css'
 
 import landing_sample from "assets/landing_sample.gif"
 import docs_angle from "assets/docs_angle.png"
