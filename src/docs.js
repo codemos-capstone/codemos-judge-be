@@ -61,7 +61,7 @@ export default function Docs(){
         <div className="container">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-            <div class="desc">
+            <div className="desc">
             <h1>CodeMos API Documentation</h1>    
             <div>
                 CodeMos는 추락하는 우주선을 안전하게 착륙시키는 게임입니다.<br/>
@@ -116,190 +116,190 @@ export default function Docs(){
         3. 버그가 발견되었다면 이스터에그입니다.<br/>
     </div>
     <h2 id="start">Getting Started</h2>
-    <div class="api-function" id="">
-        <h2 class="function-title">main loop</h2>
-        <p class="function-description">
+    <div className="api-function" id="">
+        <h2 className="function-title">main loop</h2>
+        <p className="function-description">
             CodeMos 알고리즘에서 main loop는 아래와 같이 "newInterval"에 할당되어야 합니다.<br/>
             "newInterval"에 할당하지 않고 setInterval을 호출할 시 초기화 오류가 발생할 수 있습니다.<br/>
             interval 간격은 수정할 수 있습니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
                 {useInterval}
             </code></pre>
         </div>
-        <h2 class="function-title">알고리즘 작성 예시</h2>
-        <p class="function-description">
+        <h2 className="function-title">알고리즘 작성 예시</h2>
+        <p className="function-description">
             전역 스코프에서 함수와 변수를 정의할 수 있습니다.<br/>
             아래는 착륙 알고리즘 예제 입니다.(고득점 불가)<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
                 {codeExample}
             </code></pre>
         </div>
-        <h2 class="function-title">잘 짠 착륙 알고리즘 예시</h2>
-        <p class="function-description">
-            <pre><code class="language-javascript">
+        <h2 className="function-title">잘 짠 착륙 알고리즘 예시</h2>
+        <p className="function-description">
+            <pre><code className="language-javascript">
 // 비밀~
             </code></pre>
         </p>
         <img src={landing_sample} width="100%"/><br/>
-        <p class="function-description">
+        <p className="function-description">
             by 조영효<br/>
         </p>
     </div>
     <h2 id="get">Get Methods</h2>
-    <div class="api-function" id="getVelocityX">
-        <h2 class="function-title">getVelocityX</h2>
-        <p class="function-description">
+    <div className="api-function" id="getVelocityX">
+        <h2 className="function-title">getVelocityX</h2>
+        <p className="function-description">
 이 함수는 우주선의 현재 수평 속도를 실수형으로 반환합니다.<br/>
 &nbsp;&nbsp;- 음수 : 우주선이 좌로 이동 중<br/>
 &nbsp;&nbsp;- 양수 : 우주선이 우로 이동 중<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 getVelocityX()
             </code></pre>
         </div>
     </div>
-    <div class="api-function" id="getVelocityY">
-        <h2 class="function-title">getVelocityY</h2>
-        <p class="function-description">
+    <div className="api-function" id="getVelocityY">
+        <h2 className="function-title">getVelocityY</h2>
+        <p className="function-description">
 이 함수는 우주선의 현재 수직 속도를 실수형으로 반환합니다.<br/>
 &nbsp;&nbsp;- 음수 : 우주선이 위로 이동 중<br/>
 &nbsp;&nbsp;- 양수 : 우주선이 아래로 이동 중<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 getVelocityY()
             </code></pre>
         </div>
     </div>    
-    <div class="api-function" id="getAngle">
-        <h2 class="function-title">getAngle</h2>
-        <p class="function-description">
+    <div className="api-function" id="getAngle">
+        <h2 className="function-title">getAngle</h2>
+        <p className="function-description">
 이 함수는 우주선의 현재 각도를 실수형으로 반환합니다.(-180.0 ~ +180.0)<br/>
 <br/>
         <img src={docs_angle} width="100%"/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 getAngle()
             </code></pre>
         </div>
     </div>
-    <div class="api-function" id="getHeight">
-        <h2 class="function-title">getHeight</h2>
-        <p class="function-description">
+    <div className="api-function" id="getHeight">
+        <h2 className="function-title">getHeight</h2>
+        <p className="function-description">
 이 함수는 우주선의 현재 고도(ft, 피트)를 정수형으로 반환합니다.<br/>
 착륙지점의 고도는 0ft 입니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 getHeight()
             </code></pre>
         </div>
     </div>
-    <div class="api-function" id="getRotationVelocity">
-        <h2 class="function-title">getRotationVelocity</h2>
-        <p class="function-description">
+    <div className="api-function" id="getRotationVelocity">
+        <h2 className="function-title">getRotationVelocity</h2>
+        <p className="function-description">
 이 함수는 우주선의 현재 각속도를 실수형으로 반환합니다.<br/>
 &nbsp;&nbsp;- 음수 : 우주선이 반시계 방향으로 회전 중<br/>
 &nbsp;&nbsp;- 양수 : 우주선이 시계 방향으로 회전 중<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 getRotationVelocity()
             </code></pre>
         </div>
     </div>
     <h2 id="set">Set Methods</h2>
-    <div class="api-function" id="engineOn">
-        <h2 class="function-title">engineOn</h2>
-        <p class="function-description">
+    <div className="api-function" id="engineOn">
+        <h2 className="function-title">engineOn</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 주 엔진을 작동시킵니다.<br/>
         <img src={docs_u} width="25%"/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 engineOn()
             </code></pre>
         </div>
     </div>   
 
-    <div class="api-function" id="engineOff">
-        <h2 class="function-title">engineOff</h2>
-        <p class="function-description">
+    <div className="api-function" id="engineOff">
+        <h2 className="function-title">engineOff</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 주 엔진을 정지합니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 engineOff()
             </code></pre>
         </div>
     </div>   
 
-    <div class="api-function" id="rotateLeft">
-        <h2 class="function-title">rotateLeft</h2>
-        <p class="function-description">
+    <div className="api-function" id="rotateLeft">
+        <h2 className="function-title">rotateLeft</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 좌측 추진체을 작동합니다.<br/>
 (우주선의 각속도가 증가합니다.)<br/>
 
         <img src={docs_r} width="40%"/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 rotateLeft()
             </code></pre>
         </div>
     </div> 
 
-    <div class="api-function" id="stopLeftRotation">
-        <h2 class="function-title">stopLeftRotation</h2>
-        <p class="function-description">
+    <div className="api-function" id="stopLeftRotation">
+        <h2 className="function-title">stopLeftRotation</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 좌측 추진체을 정지합니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 stopLeftRotation()
             </code></pre>
         </div>
     </div> 
 
-    <div class="api-function" id="rotateRight">
-        <h2 class="function-title">rotateRight</h2>
-        <p class="function-description">
+    <div className="api-function" id="rotateRight">
+        <h2 className="function-title">rotateRight</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 우측 추진체을 작동합니다.<br/>
 (우주선의 각속도가 감소합니다.)<br/>
         <img src={docs_l} width="40%"/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 rotateRight()
             </code></pre>
         </div>
     </div> 
 
-    <div class="api-function" id="stopRightRotation">
-        <h2 class="function-title">stopRightRotation</h2>
-        <p class="function-description">
+    <div className="api-function" id="stopRightRotation">
+        <h2 className="function-title">stopRightRotation</h2>
+        <p className="function-description">
 이 함수를 호출하면 우주선의 우측 추진체을 정지합니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 stopRightRotation()
             </code></pre>
         </div>
     </div> 
     <h2 id="util">Utility Methods</h2>
-    <div class="api-function" id="logging">
-        <h2 class="function-title">logging</h2>
-        <p class="function-description">
+    <div className="api-function" id="logging">
+        <h2 className="function-title">logging</h2>
+        <p className="function-description">
 이 함수는 Get Method 들의 반환값을 console에 표시합니다.<br/>
         </p>
-        <div class="function-example">
-            <pre><code class="language-javascript">
+        <div className="function-example">
+            <pre><code className="language-javascript">
 {showReturns}
             </code></pre>
         </div>
