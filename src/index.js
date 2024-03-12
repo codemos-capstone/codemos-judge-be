@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import React from "react";
-import Docs from "./docs.js";
+import Docs from "components/docs";
 const docsElement = document.getElementById('docs')
 const docs = createRoot(docsElement);
 docs.render(

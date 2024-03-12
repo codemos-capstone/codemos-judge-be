@@ -1,21 +1,20 @@
 import { useEffect } from "react";
 import './docs.css'
 
-import landing_sample from "./images/landing_sample.gif"
-import docs_angle from "./images/docs_angle.png"
-import docs_u from "./images/docs_u.png"
-import docs_r from "./images/docs_r.png"
-import docs_l from "./images/docs_l.png"
+import landing_sample from "assets/landing_sample.gif"
+import docs_angle from "assets/docs_angle.png"
+import docs_u from "assets/docs_u.png"
+import docs_r from "assets/docs_r.png"
+import docs_l from "assets/docs_l.png"
 
 
-const useInterval = `// TODO: 
+const basicForm = `// TODO: 
 newInterval = setInterval(() => {
     // TODO: 
 }, 1); // 1ms loop
-// TODO: 
-            </code></pre>
-            <pre><code class="language-javascript">
-// 잘못된 예시
+// TODO:`
+
+const wrongEx = `// 잘못된 예시
 
 setInterval(() => {
     // 어쩌구 저쩌구
@@ -42,7 +41,7 @@ newInterval = setInterval(() => { // main loop
     engineCtrl();
 }, 1);`
 
-const showReturns = `logging()
+const aboutLogging = `logging()
 
 /*
 f12 -> [console output]
@@ -55,12 +54,21 @@ getRotationVelocity() : 0.37505750000014804
 */`
 
 export default function Docs(){
-    useEffect(() => {})
+    useEffect(() => {
+        const scriptTag = document.createElement('script')
+        scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js'
+        scriptTag.onload = () => {
+          // Call the function from the remote script
+          hljs.initHighlightingOnLoad()
+        }
+        document.body.appendChild(scriptTag)
+    }, [])
 
     return(
         <div className="container">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js">hljs.initHighlightingOnLoad();</script>
+    <script></script>
             <div className="desc">
             <h1>CodeMos API Documentation</h1>    
             <div>
@@ -125,7 +133,10 @@ export default function Docs(){
         </p>
         <div className="function-example">
             <pre><code className="language-javascript">
-                {useInterval}
+                {basicForm}
+            </code></pre>
+            <pre><code class="language-javascript">
+                {wrongEx}
             </code></pre>
         </div>
         <h2 className="function-title">알고리즘 작성 예시</h2>
@@ -139,11 +150,11 @@ export default function Docs(){
             </code></pre>
         </div>
         <h2 className="function-title">잘 짠 착륙 알고리즘 예시</h2>
-        <p className="function-description">
+        <div className="function-description">
             <pre><code className="language-javascript">
 // 비밀~
             </code></pre>
-        </p>
+        </div>
         <img src={landing_sample} width="100%"/><br/>
         <p className="function-description">
             by 조영효<br/>
@@ -300,7 +311,7 @@ stopRightRotation()
         </p>
         <div className="function-example">
             <pre><code className="language-javascript">
-{showReturns}
+{aboutLogging}
             </code></pre>
         </div>
     </div>
