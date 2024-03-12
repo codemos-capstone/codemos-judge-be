@@ -1,0 +1,7 @@
+body {
+    margin: 100px;
+    background: #02071e;
+    font: 400 18px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    overflow-y: auto;
+}

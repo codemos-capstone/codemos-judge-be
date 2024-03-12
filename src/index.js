@@ -1,10 +1,11 @@
-import { createRoot } from 'react-dom/client';
 import React from "react";
-import Docs from "components/docs";
-const docsElement = document.getElementById('docs')
-const docs = createRoot(docsElement);
-docs.render(
+import { createRoot } from 'react-dom/client';
+import './index.css'
+import App from "./App";
+ 
+const root = createRoot(document.getElementById('root'));
+root.render(
     <React.StrictMode>
-        <Docs />
+        <App />
     </React.StrictMode>
 );
