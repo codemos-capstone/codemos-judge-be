@@ -134,7 +134,7 @@ export default function Docs(){
             <pre><code className="language-javascript">
                 {basicForm}
             </code></pre>
-            <pre><code class="language-javascript">
+            <pre><code className="language-javascript">
                 {wrongEx}
             </code></pre>
         </div>

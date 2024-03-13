@@ -5,14 +5,28 @@ import logo from 'assets/main-logo.png'
 
 import susuk from 'assets/dol.jpg'
 
-export default function MainPage(){
+const btnTypes = {
+    game: '게임 시작',
+    docs: '게임 설명',
+    leader: '리더보드'
+
+}
+
+function MainButton({btnType, handlePage}){
+    return <button className='button' btntype={btnType} onClick={handlePage}>{btnTypes[btnType]}</button>
+}
+
+export default function MainPage({setPage}){
+    const handlePage = (e) => {
+        setPage(e.currentTarget.getAttribute('btnType'))
+    }
     return(
         <div>
             <a href="login.html" className="home-login-btn">로그인</a>
             <a style={{display: 'none'}} href="user.html" className="home-mypage-btn">
                 <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
             </a>
-            <a style={{display: 'none'}} onClick="logout()" className="home-logout-btn">로그아웃</a>
+            <a style={{display: 'none'}} className="home-logout-btn">로그아웃</a>
 
             <div>
                 <div className="mainpage">
@@ -25,9 +39,9 @@ export default function MainPage(){
                 </div>
                 <div className="menus">
                     <div className="buttons">
-                        <a href="game.html" className="button">게임 시작</a>
-                        <a href="docs.html" className="button">게임 설명</a>
-                        <a href="leader.html" target="_blank" className="button">리더보드</a>
+                        <MainButton btnType='game' handlePage={handlePage} />
+                        <MainButton btnType='docs' handlePage={handlePage} />
+                        <MainButton btnType='leader' handlePage={handlePage} />
                     </div>
                     <div className="leader_board">
                         <div style={{margin: '20px', textAlign: 'center', border: '2px solid', width: '400px', height:'300px'}}>리더보드 자리</div>
