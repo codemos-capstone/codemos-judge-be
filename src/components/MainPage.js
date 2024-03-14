@@ -5,15 +5,27 @@ import logo from 'assets/main-logo.png'
 
 import susuk from 'assets/dol.jpg'
 
-const btnTypes = {
-    game: '게임 시작',
-    docs: '게임 설명',
-    leader: '리더보드'
-
-}
+const btnTexts = require('lang/kor.json').main;
 
 function MainButton({btnType, handlePage}){
-    return <button className='button' btntype={btnType} onClick={handlePage}>{btnTypes[btnType]}</button>
+    return <button className='button' btntype={btnType} onClick={handlePage}>{btnTexts[btnType]}</button>
+}
+function LoginBtn(){
+    let isLogin = true;
+    if (isLogin) {
+        return(
+            <div>
+                <button href="user.html" className="home-mypage-btn">
+                <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
+                </button>
+                <button className="home-logout-btn">{btnTexts.login[1]}</button>
+            </div>
+        )
+    } else {
+        return(
+            <button className="home-login-btn">{btnTexts.login[0]}</button>
+        )
+    }
 }
 
 export default function MainPage({setPage}){
@@ -22,12 +34,7 @@ export default function MainPage({setPage}){
     }
     return(
         <div>
-            <a href="login.html" className="home-login-btn">로그인</a>
-            <a style={{display: 'none'}} href="user.html" className="home-mypage-btn">
-                <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
-            </a>
-            <a style={{display: 'none'}} className="home-logout-btn">로그아웃</a>
-
+            <LoginBtn />
             <div>
                 <div className="mainpage">
                     <img src={symbol} width="100px" /><br />
