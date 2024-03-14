@@ -58,7 +58,6 @@ export default function Docs(){
         const scriptTag = document.createElement('script')
         scriptTag.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js'
         scriptTag.onload = () => {
-          // Call the function from the remote script
           hljs.initHighlightingOnLoad()
         }
         document.body.appendChild(scriptTag)
@@ -67,7 +66,6 @@ export default function Docs(){
     return(
         <div className="container">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/monokai.min.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js">hljs.initHighlightingOnLoad();</script>
             <div className="desc">
             <h1>CodeMos API Documentation</h1>    
             <div>
@@ -79,7 +77,7 @@ export default function Docs(){
             <hr />
 
     <h2>INDEX</h2>
-    <ul>
+    <ul  className="links">
         <li><a href="#description">Description</a></li>
         <li><a href="#tip">Tip</a></li>
         <li><a href="#start">Getting Started</a></li>

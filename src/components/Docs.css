@@ -5,6 +5,12 @@
     padding: 20px;
     text-align: left;
 }
+.links a:link, .links a:visited {
+    color: #4DAF7C; 
+}
+.links a:hover, .links a:active {
+    color: #D9853B;
+}
 .api-function {
     border: 1px solid #444;
     background-color: #0a1f44;

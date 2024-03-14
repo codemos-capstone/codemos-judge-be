@@ -15,7 +15,7 @@
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.button:hover {
+.button:hover, .home-login-btn:hover, .home-logout-btn:hover {
     background-color: #2e9cca;
     box-shadow: 0 0 20px #2e9cca;
 }
@@ -61,10 +61,6 @@
     text-decoration-line: none;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
-.home-login-btn:hover {
-    background-color: #2e9cca;
-    box-shadow: 0 0 20px #2e9cca;
-}
 .home-logout-btn {
     position: fixed;
     top: 20px;
@@ -78,10 +74,6 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-}
-.home-logout-btn:hover {
-    background-color: #2e9cca;
-    box-shadow: 0 0 20px #2e9cca;
 }
 .home-mypage-btn {
     position: fixed;
