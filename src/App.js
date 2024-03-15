@@ -1,33 +1,26 @@
 import MainPage from "components/MainPage"
 import Docs from "components/Docs"
 import Login from "components/Login"
+import User from "components/User"
 import { useState } from "react"
 
 export default function App(){
     const [page, setPage] = useState('main')
+    let pageContent
     if (page === 'main')
-        return(
-            <div className={page}>
-                <MainPage setPage={setPage}/>
-            </div>
-        )
+        pageContent = <MainPage setPage={setPage}/>;
     else if (page === 'docs') {
-        return (
-            <div className={page}>
-                <Docs />
-            </div>
-        )
+        pageContent = <Docs />
     } else if (page === 'login') {
-        return (
-            <div className={page}>
-                <Login />
-            </div>
-        )
+        pageContent = <Login />
+    } else if (page === 'user-page'){
+        pageContent = <User />
     } else
-        return(
-            <div className={page}>
-                <MainPage setPage={setPage}/>
-            </div>
-        )
+        pageContent = <MainPage setPage={setPage}/>;
+    return(
+        <div className={page}>
+            {pageContent}
+        </div>
+    )
 
 }

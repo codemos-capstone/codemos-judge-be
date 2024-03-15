@@ -15,17 +15,21 @@ function MainButton({btnType, handlePage}){
     if(btnType === "login"){
         btnClass = "home-login-btn"
         btnText = btnTexts.login[0]
+    } else if (btnType === "user-page"){
+        return(
+            <button btntype={btnType} className="home-mypage-btn" onClick={handlePage}> {/** 유저 페이지 이동 */}
+            <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
+            </button>
+        )
     }
     return <button className={btnClass} btntype={btnType} onClick={handlePage}>{btnText}</button>
 }
 function LoginBtn({handlePage}){
-    let isLogin = false;
+    let isLogin = true;
     if (isLogin) {
         return(
             <div>
-                <button href="user.html" className="home-mypage-btn">
-                <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
-                </button>
+                <MainButton btnType='user-page' handlePage={handlePage} />
                 <button className="home-logout-btn">{btnTexts.login[1]}</button>
             </div>
         )
