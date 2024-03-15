@@ -1,5 +1,6 @@
 import MainPage from "components/MainPage"
 import Docs from "components/Docs"
+import Login from "components/Login"
 import { useState } from "react"
 
 export default function App(){
@@ -14,6 +15,12 @@ export default function App(){
         return (
             <div className={page}>
                 <Docs />
+            </div>
+        )
+    } else if (page === 'login') {
+        return (
+            <div className={page}>
+                <Login />
             </div>
         )
     } else

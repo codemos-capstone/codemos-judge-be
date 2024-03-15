@@ -1,4 +1,4 @@
-import Leader from './Leader'
+//import Leader from './Leader'
 
 import './MainPage.css'
 import profile from 'assets/profile.jpeg'
@@ -10,10 +10,16 @@ import susuk from 'assets/dol.jpg'
 const btnTexts = require('lang/kor.json').main;
 
 function MainButton({btnType, handlePage}){
-    return <button className='button' btntype={btnType} onClick={handlePage}>{btnTexts[btnType]}</button>
+    let btnClass = "button"
+    let btnText = btnTexts[btnType]
+    if(btnType === "login"){
+        btnClass = "home-login-btn"
+        btnText = btnTexts.login[0]
+    }
+    return <button className={btnClass} btntype={btnType} onClick={handlePage}>{btnText}</button>
 }
-function LoginBtn(){
-    let isLogin = true;
+function LoginBtn({handlePage}){
+    let isLogin = false;
     if (isLogin) {
         return(
             <div>
@@ -25,7 +31,7 @@ function LoginBtn(){
         )
     } else {
         return(
-            <button className="home-login-btn">{btnTexts.login[0]}</button>
+            <MainButton btnType='login' handlePage={handlePage} />/*<button className="home-login-btn">{btnTexts.login[0]}</button>*/
         )
     }
 }
@@ -36,7 +42,7 @@ export default function MainPage({setPage}){
     }
     return(
         <div>
-            <LoginBtn />
+            <LoginBtn handlePage={handlePage} />
             <div>
                 <div className="mainpage">
                     <img src={symbol} width="100px" /><br />
