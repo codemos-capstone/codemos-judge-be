@@ -1,3 +1,5 @@
+import Leader from './Leader'
+
 import './MainPage.css'
 import profile from 'assets/profile.jpeg'
 import symbol from 'assets/main-symbol.png'
@@ -50,15 +52,7 @@ export default function MainPage({setPage}){
                         <MainButton btnType='docs' handlePage={handlePage} />
                         <MainButton btnType='leader' handlePage={handlePage} />
                     </div>
-                    <div className="leader_board">
-                        <div style={{margin: '20px', textAlign: 'center', border: '2px solid', width: '400px', height:'300px'}}>리더보드 자리</div>
-                        <div className="btns load" style={{margin: '30px 2px'}}></div>
-                        <div id="board"></div>
-                        {/*<script src="leader.js"></script>*/}
-                        <script>
-                            {/**script was here */}
-                        </script>
-                    </div>
+                    <Leader />
                 </div>
                 {/*<script src="login.js"></script>*/}
             </div>
