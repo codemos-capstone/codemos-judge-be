@@ -52,7 +52,7 @@ export default function MainPage({setPage}){
                         <MainButton btnType='docs' handlePage={handlePage} />
                         <MainButton btnType='leader' handlePage={handlePage} />
                     </div>
-                    <Leader />
+                    {/*<Leader />*/}
                 </div>
                 {/*<script src="login.js"></script>*/}
             </div>
