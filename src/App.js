@@ -1,7 +1,7 @@
-import MainPage from "components/MainPage"
-import Docs from "components/Docs"
-import Login from "components/Login"
-import User from "components/User"
+import MainPage from "views/MainPage"
+import Docs from "views/Docs"
+import Login from "views/Login"
+import User from "views/User"
 import { useState } from "react"
 
 export default function App(){
