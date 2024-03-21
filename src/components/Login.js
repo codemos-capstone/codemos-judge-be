@@ -6,7 +6,7 @@ const btnTexts = require('lang/kor.json').login;
 
 export default function Login(){
     return(
-        <div>
+        <div className="container">
             <div className="success-message" id="successMessage">{btnTexts[0]}</div>
             <div className="login-container">
                 <h2>{btnTexts[1]}</h2>

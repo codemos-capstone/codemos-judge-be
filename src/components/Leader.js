@@ -4,7 +4,7 @@ const btnTexts = require('lang/kor.json').leader;
 
 export default function Leader(){
     return(
-        <div>
+        <div className="container">
             <div>
                 <h1 style={{textAlign: 'center'}}>{btnTexts.btns[0]}</h1>
             </div>

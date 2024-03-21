@@ -45,7 +45,7 @@ export default function MainPage({setPage}){
         setPage(e.currentTarget.getAttribute('btnType'))
     }
     return(
-        <div>
+        <div className='container'>
             <LoginBtn handlePage={handlePage} />
             <div>
                 <div className="mainpage">

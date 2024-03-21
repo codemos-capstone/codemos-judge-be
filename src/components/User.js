@@ -6,7 +6,7 @@ import symbol from 'assets/main-symbol.png'
 
 export default function User(){
     return(
-       <div>
+       <div className="container">
             <button className="home-btn" onclick="">{btnTexts[0]}</button>{/** onclick 제어 필요 */}
             <div className="container">
                 <div className="logo">

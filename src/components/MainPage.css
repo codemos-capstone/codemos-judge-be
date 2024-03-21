@@ -1,4 +1,12 @@
-.button {
+.main .container {
+    margin: 100px;
+    background: #02071e;
+    font: 400 18px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.main .button {
     background-color: #0a0f1c;
     color: #fff;
     padding: 10px 20px;
@@ -15,38 +23,38 @@
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.button:hover, .home-login-btn:hover, .home-logout-btn:hover {
+.main .button:hover, .home-login-btn:hover, .home-logout-btn:hover {
     background-color: #2e9cca;
     box-shadow: 0 0 20px #2e9cca;
 }
 
-.menus {
+.main .menus {
     display: flex;
     flex-wrap: nowrap;
 }
 
 @media screen and (max-width: 1080px) {
-    .menus {
+    .main .menus {
         display: flex;
         flex-wrap: wrap;
     }
 }
 
-.buttons {
+.main .buttons {
     width: 100%;
     margin: 0px 30px;
 }
 
-.mainpage {
+.main .mainpage {
     margin: 0px auto;
 }
 
-.leader_board {
+.main .leader_board {
     width: 100%;
     margin: 0px 30px;
     color: white;
 }
-.home-login-btn {
+.main .home-login-btn {
     position: fixed;
     top: 20px;
     right: 20px;
@@ -61,7 +69,7 @@
     text-decoration-line: none;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
-.home-logout-btn {
+.main .home-logout-btn {
     position: fixed;
     top: 20px;
     right: 100px;
@@ -75,7 +83,7 @@
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
-.home-mypage-btn {
+.main .home-mypage-btn {
     position: fixed;
     top: 8px;
     right: 10px;
@@ -87,27 +95,27 @@
     cursor: pointer;
 }
 
-.iframe-container {
+.main .iframe-container {
     display: flex;
 }
 
-.iframe-container iframe {
+.main .iframe-container iframe {
     width: 50%;
     border: none;
 }
 
-.iframe-container iframe {
+.main .iframe-container iframe {
     height: 400px;
     border-radius: 10px;
 }
 
-.profile-image {
+.main .profile-image {
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid #4d4dff;
     box-shadow: 0 0 10px #4d4dff;
 }
-.profile {
+.main .profile {
     object-fit: cover;
     width: 40px;
     height: 30px;

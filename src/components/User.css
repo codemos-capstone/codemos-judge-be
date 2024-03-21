@@ -1,4 +1,4 @@
-body {
+.user-page .container {
     font-family: Arial, sans-serif;
     background-color: #02071e;
     color: white;
@@ -6,7 +6,7 @@ body {
     padding: 0;
     overflow-y: auto;
 }
-.home-btn{
+.user-page .home-btn{
     position: fixed;
     top: 15px;
     left: 15px;
@@ -17,30 +17,30 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
-.home-btn:hover{
+.user-page .home-btn:hover{
     background-color: #0056b3;
 }
 
-.container {
+.user-page .container {
     width: 80%;
     margin: 0 auto;
     text-align: center;
 }
 
-.logo img {
+.user-page .logo img {
     max-width: 15%;
     margin-top: 3%;
 
     height: auto;
 }
 
-.profile {
+.user-page .profile {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
 }
-.user-info-block {
+.user-page .user-info-block {
     align-items: center; /* 수직 중앙 정렬 */
     background-color: #333;
     border-radius: 10px;
@@ -51,7 +51,7 @@ body {
     color: white;
 }
 
-.profile-icon {
+.user-page .profile-icon {
     width: 100px;
     height: 100px;
     background-image: url("assets/dol.jpg"); /* 이 부분은 실제 프로필 이미지로 대체 가능 */
@@ -62,26 +62,26 @@ body {
     background-repeat: no-repeat; /* 이미지 반복 방지 */
 }
 
-.user-details {
+.user-page .user-details {
     text-align: left;
     display: flex;
     flex-direction: column; /* 세로 방향 정렬 */
 }
 
-.user-details h2 {
+.user-page .user-details h2 {
     margin: 5px 0; /* 상하 여백 */
 }
 
-.user-details .nickname {
+.user-page .user-details .nickname {
     font-size: 1.5em;
     font-weight: bold;
 }
 
-.user-info-block .small-text {
+.user-page .user-info-block .small-text {
     font-size: 0.8em; /* 아이디와 역할의 글자 크기를 작게 */
 }
 
-.reg-btn{
+.user-page .reg-btn{
     align-items: center;
     margin: 10px 0;
     justify-content: center;
@@ -95,11 +95,11 @@ body {
     padding: 0 4px;
     background-color: #189f2a;
 }
-.reg-btn:hover{
+.user-page .reg-btn:hover{
     background-color: #0d5b17;
 }
 
-#deleteAccount{
+.user-page #deleteAccount{
     position: relative;
     background-color: #c31b22;
     color: #fff;
@@ -110,23 +110,23 @@ body {
     text-align: center;
     border-radius: 5px;
 }
-#deleteAccount:hover{
+.user-page #deleteAccount:hover{
     background-color: #801519;
 }
 
-.code-entities {
+.user-page .code-entities {
     margin-top: 20px;
     /* 동적인 코드 엔티티 목록 스타일링 */
 }
-.code{
+.user-page .code{
     border-radius: 5px;
     padding: 5px;
     cursor: pointer;
     text-align: left;
 }
-.code:hover {
+.user-page .code:hover {
     background-color: #0a0f58;
 }
-code{
+.user-page code{
     max-width: 100%;
 }

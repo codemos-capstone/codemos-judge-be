@@ -1,4 +1,4 @@
-body {
+.leader .container {
     margin: 0;
     background: #02071e;
     user-select: none;
@@ -9,12 +9,12 @@ body {
     padding: 10px;
     overflow-y: auto;
 }
-body #board table{
+.leader  #board table{
     border-collapse: collapse;
     color: #fff;
     margin: 10px 0;
 }
-body button {
+.leader  button {
     margin: 1px 3px;
     padding: 10px 20px;
     background-color: #007bff;
@@ -23,17 +23,17 @@ body button {
     border-radius: 5px;
     cursor: pointer;
 }
-body button:hover {
+.leader  button:hover {
     background-color: #0056b3;
 }
-.load-btn{
+.leader .load-btn{
     background-color: #124b89;
 }
-.load-btn:hover{
+.leader .load-btn:hover{
     background-color: #396798;
 }
 
-body .btns{
+.leader  .btns{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -41,26 +41,26 @@ body .btns{
     margin: 2px;
 }
 
-.load div{
+.leader .load div{
     display: flex;
     width: 100%;
     justify-content: center;
 }
-#board td, #board th{
+.leader #board td, .leader #board th{
     width: 20%;
     text-align: center;
 }
-#board td p{
+.leader #board td p{
     text-align: initial;
 }
-#board tr{
+.leader #board tr{
     border-radius: 8px;
     overflow: hidden;
 }
-#board .row:hover{
+.leader #board .row:hover{
     background-color: #00244b;
 }
-.details{
+.leader .details{
     background-color: #0f0f25;
     display: table-row;
     margin: 0 auto;
@@ -68,14 +68,14 @@ body .btns{
     opacity: 1;
     overflow: hidden;
 }
-.details pre{
+.leader .details pre{
     text-align: left;
     margin: 10px 10px;
 }
-.details-hide{
+.leader .details-hide{
     display: none;
 }
-.row:hover {
+.leader .row:hover {
     background-color: #2e9cca; /* 마우스 오버 시 네온 색상 */
     cursor: pointer; /* 마우스 포인터 변경 */
 }

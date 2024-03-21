@@ -1,11 +1,11 @@
-body {
+.login .container {
     margin: 100px;
     background: #02071e;
     font: 400 18px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
     text-align: center;
     overflow-y: auto;
 }
-.login-container, .register-container {
+.login .login-container, .login .register-container {
     max-width: 300px;
     margin: auto;
     background: #fff;
@@ -14,7 +14,7 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-.success-message {
+.login .success-message {
     display: none;
     position: fixed;
     top: 15px;
@@ -35,22 +35,22 @@ body {
     }
 }
 
-.form-group {
+.login .form-group {
     margin-bottom: 20px;
 }
 
-label {
+.login label {
     display: block;
     margin-bottom: 8px;
 }
 
-input {
+.login input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
 }
 
-button {
+.login button {
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;
@@ -58,12 +58,12 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
-button:hover {
+.login button:hover {
     background-color: #2b632e; /* Darker shade for hover effect */
 }
-.home {
+.login .home {
     padding: 2%;
 }
-.hidden {
+.login .hidden {
     display: none;
 }
