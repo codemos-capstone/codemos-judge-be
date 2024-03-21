@@ -4,10 +4,19 @@ const btnTexts = require('lang/kor.json').user;
 
 import symbol from 'assets/main-symbol.png'
 
-export default function User(){
+function HomeBtn({handlePage}){
+    return(
+        <button btntype='main' className="home-btn" onClick={handlePage}>{btnTexts[0]}</button>
+    )   
+}
+
+export default function User({setPage}){
+    const handlePage = (e) => {
+        setPage(e.currentTarget.getAttribute('btnType'))
+    }
     return(
        <div className="container">
-            <button className="home-btn" onclick="">{btnTexts[0]}</button>{/** onclick 제어 필요 */}
+            <HomeBtn handlePage={handlePage} />
             <div className="container">
                 <div className="logo">
                     {/*로고 이미지 경로를 'logo.png'로 가정합니다. 실제 경로로 변경하세요.*/}

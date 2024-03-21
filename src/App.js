@@ -14,7 +14,7 @@ export default function App(){
     } else if (page === 'login') {
         pageContent = <Login />
     } else if (page === 'user-page'){
-        pageContent = <User />
+        pageContent = <User setPage={setPage} />
     } else
         pageContent = <MainPage setPage={setPage}/>;
     return(
