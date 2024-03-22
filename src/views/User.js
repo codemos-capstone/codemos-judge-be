@@ -2,7 +2,7 @@ import "./User.css"
 
 const btnTexts = require('lang/kor.json').user;
 
-import symbol from 'assets/main-symbol.png'
+import symbol from 'assets/images/main-symbol.png'
 
 function HomeBtn({handlePage}){
     return(

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import './Docs.css'
 
-import landing_sample from "assets/landing_sample.gif"
-import docs_angle from "assets/docs_angle.png"
-import docs_u from "assets/docs_u.png"
-import docs_r from "assets/docs_r.png"
-import docs_l from "assets/docs_l.png"
+import landing_sample from "assets/images/landing_sample.gif"
+import docs_angle from "assets/images/docs_angle.png"
+import docs_u from "assets/images/docs_u.png"
+import docs_r from "assets/images/docs_r.png"
+import docs_l from "assets/images/docs_l.png"
 
 
 const basicForm = `// TODO: 

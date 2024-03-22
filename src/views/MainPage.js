@@ -1,14 +1,12 @@
 import './MainPage.css'
 import LoginBtn from 'components/Buttons/LoginBtn'
 import MainBtn from 'components/Buttons/MainBtn'
-import symbol from 'assets/main-symbol.png'
-import logo from 'assets/main-logo.png'
+import symbol from 'assets/images/main-symbol.png'
+import logo from 'assets/images/main-logo.png'
 
-import susuk from 'assets/dol.jpg'
+import susuk from 'assets/images/dol.jpg'
 
-let isLogin = true;
-
-export default function MainPage({setPage}){
+export default function MainPage({setPage, isLogin}){
     const handlePage = (e) => {
         setPage(e.currentTarget.getAttribute('btnType'))
     }
