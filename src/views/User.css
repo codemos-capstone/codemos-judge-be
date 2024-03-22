@@ -99,7 +99,7 @@
     background-color: #0d5b17;
 }
 
-.user-page #deleteAccount{
+#deleteAccount{
     position: relative;
     background-color: #c31b22;
     color: #fff;
@@ -110,7 +110,7 @@
     text-align: center;
     border-radius: 5px;
 }
-.user-page #deleteAccount:hover{
+#deleteAccount:hover{
     background-color: #801519;
 }
 

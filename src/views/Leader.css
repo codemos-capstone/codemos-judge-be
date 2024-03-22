@@ -46,18 +46,18 @@
     width: 100%;
     justify-content: center;
 }
-.leader #board td, .leader #board th{
+#board td, #board th{
     width: 20%;
     text-align: center;
 }
-.leader #board td p{
+#board td p{
     text-align: initial;
 }
-.leader #board tr{
+#board tr{
     border-radius: 8px;
     overflow: hidden;
 }
-.leader #board .row:hover{
+#board .row:hover{
     background-color: #00244b;
 }
 .leader .details{
