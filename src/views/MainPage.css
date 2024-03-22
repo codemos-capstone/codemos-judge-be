@@ -23,7 +23,7 @@
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.main .button:hover, .home-login-btn:hover, .home-logout-btn:hover {
+.main .button:hover, .main .home-login-btn:hover, .main .home-logout-btn:hover {
     background-color: #2e9cca;
     box-shadow: 0 0 20px #2e9cca;
 }

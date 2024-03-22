@@ -1,44 +1,12 @@
-//import Leader from './Leader'
-
 import './MainPage.css'
-import profile from 'assets/profile.jpeg'
+import LoginBtn from 'components/Buttons/LoginBtn'
+import MainBtn from 'components/Buttons/MainBtn'
 import symbol from 'assets/main-symbol.png'
 import logo from 'assets/main-logo.png'
 
 import susuk from 'assets/dol.jpg'
 
-const btnTexts = require('lang/kor.json').main;
-
-function MainButton({btnType, handlePage}){
-    let btnClass = "button"
-    let btnText = btnTexts[btnType]
-    if(btnType === "login"){
-        btnClass = "home-login-btn"
-        btnText = btnTexts.login[0]
-    } else if (btnType === "user-page"){
-        return(
-            <button btntype={btnType} className="home-mypage-btn" onClick={handlePage}> {/** 유저 페이지 이동 */}
-            <div className="profile-image" style={{background: '#bdbdbd'}}><img className="profile" src={profile} /></div>
-            </button>
-        )
-    }
-    return <button className={btnClass} btntype={btnType} onClick={handlePage}>{btnText}</button>
-}
-function LoginBtn({handlePage}){
-    let isLogin = true;
-    if (isLogin) {
-        return(
-            <div>
-                <MainButton btnType='user-page' handlePage={handlePage} />
-                <button className="home-logout-btn">{btnTexts.login[1]}</button>
-            </div>
-        )
-    } else {
-        return(
-            <MainButton btnType='login' handlePage={handlePage} />/*<button className="home-login-btn">{btnTexts.login[0]}</button>*/
-        )
-    }
-}
+let isLogin = true;
 
 export default function MainPage({setPage}){
     const handlePage = (e) => {
@@ -46,7 +14,7 @@ export default function MainPage({setPage}){
     }
     return(
         <div className='container'>
-            <LoginBtn handlePage={handlePage} />
+            <LoginBtn handlePage={handlePage} isLogin={isLogin}/>
             <div>
                 <div className="mainpage">
                     <img src={symbol} width="100px" /><br />
@@ -58,9 +26,9 @@ export default function MainPage({setPage}){
                 </div>
                 <div className="menus">
                     <div className="buttons">
-                        <MainButton btnType='game' handlePage={handlePage} />
-                        <MainButton btnType='docs' handlePage={handlePage} />
-                        <MainButton btnType='leader' handlePage={handlePage} />
+                        <MainBtn btnType='game' handlePage={handlePage} />
+                        <MainBtn btnType='docs' handlePage={handlePage} />
+                        <MainBtn btnType='leader' handlePage={handlePage} />
                     </div>
                     {/*<Leader />*/}
                 </div>
