@@ -1,23 +1,23 @@
-import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "./helpers/helpers.js";
-import { makeLander } from "./lander/lander.js";
-import { makeToyLander } from "./lander/toylander.js";
-import { makeStarfield } from "./starfield.js";
-import { makeControls } from "./lander/controls.js";
-import { makeTerrain } from "./terrain.js";
-import { showStatsAndResetControl } from "./stats.js";
-import { manageInstructions } from "./instructions.js";
-import { makeAudioManager } from "./helpers/audio.js";
-import { makeStateManager } from "./helpers/state.js";
-import { makeConfetti } from "./lander/confetti.js";
-import { makeTallyManger } from "./tally.js";
-import { makeAsteroid } from "./asteroids.js";
-import { makeSpaceAsteroid } from "./spaceAsteroids.js";
-import { makeChallengeManager } from "./challenge.js";
-import { makeSeededRandom } from "./helpers/seededrandom.js";
-import { makeBonusPointsManager } from "./bonuspoints.js";
-import { makeTheme } from "./theme.js";
-import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "./helpers/constants.js";
-import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "./helpers/scoring.js";
+import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "utils/helpers/helpers.js";
+import { makeLander } from "utils/lander/lander.js";
+import { makeToyLander } from "utils/lander/toylander.js";
+import { makeStarfield } from "utils/starfield.js";
+import { makeControls } from "utils/lander/controls.js";
+import { makeTerrain } from "utils/terrain.js";
+import { showStatsAndResetControl } from "utils/stats.js";
+import { manageInstructions } from "utils/instructions.js";
+import { makeAudioManager } from "utils/helpers/audio.js";
+import { makeStateManager } from "utils/helpers/state.js";
+import { makeConfetti } from "utils/lander/confetti.js";
+import { makeTallyManger } from "utils/tally.js";
+import { makeAsteroid } from "utils/asteroids.js";
+import { makeSpaceAsteroid } from "utils/spaceAsteroids.js";
+import { makeChallengeManager } from "utils/challenge.js";
+import { makeSeededRandom } from "utils/helpers/seededrandom.js";
+import { makeBonusPointsManager } from "utils/bonuspoints.js";
+import { makeTheme } from "utils/theme.js";
+import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "utils/helpers/constants.js";
+import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "utils/helpers/scoring.js";
 
 var serverAddress = "http://18.179.38.25:8080";
 var checkLoginID;
@@ -26,13 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(sessionStorage.getItem("jwtToken"));
     if (sessionStorage.getItem("jwtToken") == null) {
         console.log("no token");
-        document.querySelector(".home-login-btn").style.display = "block";
+        isLogin = false;
+        /*document.querySelector(".home-login-btn").style.display = "block";
         document.querySelector(".home-logout-btn").style.display = "none";
-        document.querySelector(".home-mypage-btn").style.display = "none";
+        document.querySelector(".home-mypage-btn").style.display = "none";*/
     } else {
-        document.querySelector(".home-login-btn").style.display = "none";
+        isLogin = true;
+        /*document.querySelector(".home-login-btn").style.display = "none";
         document.querySelector(".home-logout-btn").style.display = "block";
-        document.querySelector(".home-mypage-btn").style.display = "block";
+        document.querySelector(".home-mypage-btn").style.display = "block";*/
         var token = sessionStorage.getItem("jwtToken");
         fetch(serverAddress + "/api/verify-token", {
             method: "GET",
@@ -47,9 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (response.text() == "Invalid token.") {
                     sessionStorage.removeItem("jwtToken");
-                    document.querySelector(".home-login-btn").style.display = "block";
+                    isLogin = false;
+                    /*document.querySelector(".home-login-btn").style.display = "block";
                     document.querySelector(".home-logout-btn").style.display = "none";
-                    document.querySelector(".home-mypage-btn").style.display = "none";
+                    document.querySelector(".home-mypage-btn").style.display = "none";*/
                 }
                 return response.json();
             })
@@ -61,13 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(sessionStorage.getItem("jwtToken"));
         if (sessionStorage.getItem("jwtToken") == null) {
             console.log("no token");
-            document.querySelector(".home-login-btn").style.display = "block";
+            isLogin = false;
+            /*document.querySelector(".home-login-btn").style.display = "block";
             document.querySelector(".home-logout-btn").style.display = "none";
-            document.querySelector(".home-mypage-btn").style.display = "none";
+            document.querySelector(".home-mypage-btn").style.display = "none";*/
         } else {
-            document.querySelector(".home-login-btn").style.display = "none";
+            isLogin = true;
+            /*document.querySelector(".home-login-btn").style.display = "none";
             document.querySelector(".home-logout-btn").style.display = "block";
-            document.querySelector(".home-mypage-btn").style.display = "block";
+            document.querySelector(".home-mypage-btn").style.display = "block";*/
             var token = sessionStorage.getItem("jwtToken");
             fetch(serverAddress + "/api/verify-token", {
                 method: "GET",
@@ -82,9 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     if (response.text() == "Invalid token.") {
                         sessionStorage.removeItem("jwtToken");
-                        document.querySelector(".home-login-btn").style.display = "block";
+                        isLogin = false;
+                        /*document.querySelector(".home-login-btn").style.display = "block";
                         document.querySelector(".home-logout-btn").style.display = "none";
-                        document.querySelector(".home-mypage-btn").style.display = "none";
+                        document.querySelector(".home-mypage-btn").style.display = "none";*/
                     }
                     return response.json();
                 })
@@ -97,9 +103,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export function logout() {
     sessionStorage.removeItem("jwtToken");
-    document.querySelector(".home-login-btn").style.display = "block";
+    isLogin = false;
+    /*document.querySelector(".home-login-btn").style.display = "block";
     document.querySelector(".home-logout-btn").style.display = "none";
-    document.querySelector(".home-mypage-btn").style.display = "none";
+    document.querySelector(".home-mypage-btn").style.display = "none";*/
 
     var alertBox = document.createElement("div");
     alertBox.textContent = "로그아웃됨";
