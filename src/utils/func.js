@@ -1,5 +1,5 @@
 
-import { logging, getVelocityX, getVelocityY, getAngle, getHeight, getRotationVelocity, engineOn, engineOff, rotateLeft, stopLeftRotation, rotateRight, stopRightRotation } from './index.js';
+import { logging, getVelocityX, getVelocityY, getAngle, getHeight, getRotationVelocity, engineOn, engineOff, rotateLeft, stopLeftRotation, rotateRight, stopRightRotation } from './tempindex.js';
 
 function removeComment(code) {
     return code

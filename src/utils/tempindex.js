@@ -19,6 +19,8 @@ import { makeTheme } from "utils/theme.js";
 import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "utils/helpers/constants.js";
 import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "utils/helpers/scoring.js";
 
+let isisLogin = true;
+
 var serverAddress = "http://18.179.38.25:8080";
 var checkLoginID;
 document.addEventListener("DOMContentLoaded", () => {
@@ -26,12 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(sessionStorage.getItem("jwtToken"));
     if (sessionStorage.getItem("jwtToken") == null) {
         console.log("no token");
-        isLogin = false;
+        isisLogin = false;
         /*document.querySelector(".home-login-btn").style.display = "block";
         document.querySelector(".home-logout-btn").style.display = "none";
         document.querySelector(".home-mypage-btn").style.display = "none";*/
     } else {
-        isLogin = true;
+        isisLogin = true;
         /*document.querySelector(".home-login-btn").style.display = "none";
         document.querySelector(".home-logout-btn").style.display = "block";
         document.querySelector(".home-mypage-btn").style.display = "block";*/
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (response.text() == "Invalid token.") {
                     sessionStorage.removeItem("jwtToken");
-                    isLogin = false;
+                    isisLogin = false;
                     /*document.querySelector(".home-login-btn").style.display = "block";
                     document.querySelector(".home-logout-btn").style.display = "none";
                     document.querySelector(".home-mypage-btn").style.display = "none";*/
@@ -64,12 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(sessionStorage.getItem("jwtToken"));
         if (sessionStorage.getItem("jwtToken") == null) {
             console.log("no token");
-            isLogin = false;
+            isisLogin = false;
             /*document.querySelector(".home-login-btn").style.display = "block";
             document.querySelector(".home-logout-btn").style.display = "none";
             document.querySelector(".home-mypage-btn").style.display = "none";*/
         } else {
-            isLogin = true;
+            isisLogin = true;
             /*document.querySelector(".home-login-btn").style.display = "none";
             document.querySelector(".home-logout-btn").style.display = "block";
             document.querySelector(".home-mypage-btn").style.display = "block";*/
@@ -87,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                     if (response.text() == "Invalid token.") {
                         sessionStorage.removeItem("jwtToken");
-                        isLogin = false;
+                        isisLogin = false;
                         /*document.querySelector(".home-login-btn").style.display = "block";
                         document.querySelector(".home-logout-btn").style.display = "none";
                         document.querySelector(".home-mypage-btn").style.display = "none";*/
@@ -103,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 export function logout() {
     sessionStorage.removeItem("jwtToken");
-    isLogin = false;
+    isisLogin = false;
     /*document.querySelector(".home-login-btn").style.display = "block";
     document.querySelector(".home-logout-btn").style.display = "none";
     document.querySelector(".home-mypage-btn").style.display = "none";*/
@@ -146,7 +148,7 @@ const audioManager = makeAudioManager();
 const [CTX, canvasWidth, canvasHeight, canvasElement, scaleFactor] = generateCanvas({
     width: window.innerWidth, // * 0.6, // 코드 에디터 사이즈 적용
     height: window.innerHeight,
-    attachNode: ".game",
+    attachNode: ".game-window",
 });
 
 const challengeManager = makeChallengeManager();
