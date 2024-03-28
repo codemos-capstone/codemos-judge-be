@@ -9,18 +9,18 @@ export default function Leader(){
                 <h1 style={{textAlign: 'center'}}>{btnTexts.btns[0]}</h1>
             </div>
             <div id="board"></div>
-            <div className="btns">
+            {/*<div className="btns">
                 <button className="page-lbtn" onclick="loadBoard(0, -1)">&lt;&lt;</button>
                 <button className="page-rbtn" onclick="loadBoard(0, 1)">&gt;&gt;</button>
             </div>
             <div className="btns load" style="margin: 30px 2px;">
                 <div><button className="load-btn" onclick="loadBoard(0, 0)">{btnTexts.btns[1]}</button></div>
-            </div>
+    </div>*/}
         </div>
     )
 }
 
-let serverAddress = "https://18.183.210.86:8080"
+/*let serverAddress = "https://18.183.210.86:8080"
 
 var page = 0
 var savedBoard
@@ -185,4 +185,4 @@ function loadBoard(urlOp, pageMoveBy){
     .catch(error => {
         console.log('Error', error)
     })   
-}
+}*/

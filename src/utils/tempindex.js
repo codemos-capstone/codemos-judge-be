@@ -6,7 +6,7 @@ import { makeControls } from "utils/lander/controls.js";
 import { makeTerrain } from "utils/terrain.js";
 import { showStatsAndResetControl } from "utils/stats.js";
 import { manageInstructions } from "utils/instructions.js";
-import { makeAudioManager } from "utils/helpers/audio.js";
+//import { makeAudioManager } from "utils/helpers/audio.js";
 import { makeStateManager } from "utils/helpers/state.js";
 import { makeConfetti } from "utils/lander/confetti.js";
 import { makeTallyManger } from "utils/tally.js";
@@ -144,7 +144,7 @@ export function logout() {
 window.logout = logout;
 // SETUP
 
-const audioManager = makeAudioManager();
+//const audioManager = makeAudioManager();
 const [CTX, canvasWidth, canvasHeight, canvasElement, scaleFactor] = generateCanvas({
     width: window.innerWidth, // * 0.6, // 코드 에디터 사이즈 적용
     height: window.innerHeight,
@@ -160,7 +160,7 @@ const appState = makeStateManager()
     .set("canvasHeight", canvasHeight)
     .set("canvasElement", canvasElement)
     .set("scaleFactor", scaleFactor)
-    .set("audioManager", audioManager)
+    //.set("audioManager", audioManager)
     .set("challengeManager", challengeManager)
     .set("seededRandom", seededRandom);
 
@@ -182,9 +182,9 @@ const toyLander = makeToyLander(
     () => instructions.setRightRotationDone(),
     () => instructions.setEngineAndRotationDone()
 );
-const toyLanderControls = makeControls(appState, toyLander, audioManager);
+const toyLanderControls = makeControls(appState, toyLander); //, audioManager
 const lander = makeLander(appState, onGameEnd);
-const landerControls = makeControls(appState, lander, audioManager);
+const landerControls = makeControls(appState, lander);
 const tally = makeTallyManger();
 
 export function getVelocityX() {
@@ -363,10 +363,10 @@ function onGameEnd(data) {
     showStatsAndResetControl(appState, lander, animationObject, { ...data, scoreDescription, scoreForDisplay }, landerControls.getHasKeyboard(), onResetGame);
 
     if (data.landed) {
-        audioManager.playLanding();
+        //audioManager.playLanding();
         tally.storeLanding();
     } else {
-        audioManager.playCrash();
+        //audioManager.playCrash();
         tally.storeCrash();
     }
 

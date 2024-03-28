@@ -10,7 +10,7 @@ export const makeLander = (state, onGameEnd) => {
     const CTX = state.get("CTX");
     const canvasWidth = state.get("canvasWidth");
     const canvasHeight = state.get("canvasHeight");
-    const audioManager = state.get("audioManager");
+    //const audioManager = state.get("audioManager");
     const bonusPointsManager = state.get("bonusPointsManager");
 
     // Use grounded height to approximate distance from ground
@@ -128,9 +128,9 @@ export const makeLander = (state, onGameEnd) => {
             _engineOn = false;
             _rotatingLeft = false;
             _rotatingRight = false;
-            audioManager.stopEngineSound();
-            audioManager.stopBoosterSound1();
-            audioManager.stopBoosterSound2();
+            //audioManager.stopEngineSound();
+            //audioManager.stopBoosterSound1();
+            //audioManager.stopBoosterSound2();
             _setGameEndData(false, true);
         }
     };
@@ -195,7 +195,7 @@ export const makeLander = (state, onGameEnd) => {
 
             // Play easter egg baby sound
             if (getVectorVelocity(_velocity) > 20 && !_babySoundPlayed) {
-                state.get("audioManager").playBaby();
+                //state.get("audioManager").playBaby();
                 _babySoundPlayed = true;
             } else if (getVectorVelocity(_velocity) < 20 && _babySoundPlayed) {
                 _babySoundPlayed = false;
@@ -204,9 +204,9 @@ export const makeLander = (state, onGameEnd) => {
             _engineOn = false;
             _rotatingLeft = false;
             _rotatingRight = false;
-            audioManager.stopEngineSound();
-            audioManager.stopBoosterSound1();
-            audioManager.stopBoosterSound2();
+            //audioManager.stopEngineSound();
+            //audioManager.stopBoosterSound1();
+            //audioManager.stopBoosterSound2();
 
             const landingArea = _landingData.landingSurfaces.find(({ x, width }) => _position.x - LANDER_WIDTH / 2 >= x && _position.x + LANDER_WIDTH / 2 <= x + width);
 

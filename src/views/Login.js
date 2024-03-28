@@ -20,8 +20,8 @@ export default function Login(){
                         <label for="password">Password</label> {/*For issue*/}
                         <input type="password" id="password" name="password" required />
                     </div>
-                    <button type="submit" onclick="return login()">{btnTexts[1]}</button>
-                    <button id="register-btn" type="button" onclick="pageToggle()">{btnTexts[2]}</button>
+                    <button type="submit">{btnTexts[1]}</button> {/*} onclick="return login()"*/}
+                    <button id="register-btn" type="button">{btnTexts[2]}</button> {/** onclick="pageToggle()" */}
                 </form>
             </div>
             <div className="register-container hidden">
@@ -41,17 +41,18 @@ export default function Login(){
                         <label for="password">Password</label>
                         <input type="password" id="reg-password" name="password" required />
                     </div>
-                    <button type="submit" onclick="return register()">{btnTexts[2]}</button>
-                    <button id="back" type="button" onclick="pageToggle()">{btnTexts[3]}</button>
+                    <button type="submit">{btnTexts[2]}</button> {/** onclick="return register()" */}
+                    <button id="back" type="button">{btnTexts[3]}</button> {/** onclick="pageToggle()" */}
                 </form>
             </div>
             <div className="home">
-                <button id="home" type="button" onclick="">{btnTexts[4]}</button>
+                <button id="home" type="button">{btnTexts[4]}</button> {/** onclick="" */}
             </div>
         </div>
     )
 }
 
+/*
 let serverAddress = "http://18.179.38.25:8080"
 
 //import { makeTheme } from "./theme.js";
@@ -134,4 +135,4 @@ function showSuccessMessage() {
     setTimeout(() => {
         document.getElementById('successMessage').style.display = 'none';
     }, 2000);
-}
+}*/
