@@ -55,11 +55,6 @@ export default function Login(){
 /*
 let serverAddress = "http://18.179.38.25:8080"
 
-//import { makeTheme } from "./theme.js";
-//import { makeStateManager } from "./helpers/state.js";
-
-//const appState = makeStateManager()
-//const theme = makeTheme(appState)
 document.addEventListener('DOMContentLoaded', function () {
     var currentPath = window.location.pathname
     history.replaceState(null, null, currentPath.replace('.html', ''))
