@@ -119,16 +119,15 @@ $> npx http-server
 
 #### main loop
 
-CodeMos 알고리즘에서 main loop는 아래와 같이 "newInterval"에 할당되어야 합니다.
-"newInterval"에 할당하지 않고 setInterval을 호출할 시 초기화 오류가 발생할 수 있습니다.
-interval 간격은 수정할 수 있습니다.
+CodeMos 알고리즘에서 main loop는 필수로 존재해야 하며, 아래와 같이 "_mainLoop"에 할당되어야 합니다.
+_mainLoop는 비동기적으로 실행되며, 이 외의 다른 비동기 loop는 선언할 수 없습니다.
 
 ```javascript
-// TODO: 
-newInterval = setInterval(() => {
-    // TODO: 
-}, 1); // 1ms loop
-// TODO: 
+// TODO : 
+_mainLoop = function() {
+    // TODO : 
+};
+// TODO :
 ```
 
 ```javascript
@@ -154,7 +153,7 @@ function engineCtrl() { // Engine control depending on altitude
         engineOff();
 }
 
-newInterval = setInterval(() => { // main loop
+_mainLoop = function() {
     if (getAngle() > 0) { // Adjusting the angle of the spaceship
         stopRightRotation();
         rotateLeft();
@@ -163,7 +162,7 @@ newInterval = setInterval(() => { // main loop
         rotateRight();
     }
     engineCtrl();
-}, 1);
+};
 ```
 
 #### Well-Written Landing Algorithm Example
