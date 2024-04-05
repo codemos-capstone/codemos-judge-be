@@ -1,7 +1,7 @@
 import "./Game.css"
 
-import "utils/tempindex"
-import "utils/func"
+//import "utils/tempindex"
+//import "utils/func"
 import MainBtn from "components/Buttons/MainBtn";
 import LoginBtn from "components/Buttons/LoginBtn";
 
@@ -13,7 +13,7 @@ export default function Game({setPage, isLogin}){
         <div className="container">
             <LoginBtn handlePage={handlePage} isLogin={isLogin}/>
         
-            <div className="game-window"></div>
+            {/*<div className="game-window"></div>*/}
             <div id="endGameStats" className="fullSizeContainer">
                 <h1 id="description"></h1>
                 <div className="scoreContainer"><span id="score"></span> point <span id="type"></span></div>
