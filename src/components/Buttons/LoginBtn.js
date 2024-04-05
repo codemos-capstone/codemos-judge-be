@@ -1,3 +1,4 @@
+import React from 'react';
 import profile from 'assets/images/profile.jpeg'
 const btnTexts = require('lang/kor.json').btns.login;
 

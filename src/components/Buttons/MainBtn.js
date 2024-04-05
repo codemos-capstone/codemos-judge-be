@@ -1,3 +1,4 @@
+import React from 'react';
 const btnTexts = require('lang/kor.json').btns;
 
 export default function MainBtn({btnType, handlePage}){

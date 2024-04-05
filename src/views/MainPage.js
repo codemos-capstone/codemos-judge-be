@@ -1,3 +1,4 @@
+import React from "react";
 import './MainPage.css'
 import LoginBtn from 'components/Buttons/LoginBtn'
 import MainBtn from 'components/Buttons/MainBtn'

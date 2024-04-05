@@ -1,3 +1,4 @@
+import React from "react";
 import "./Game.css"
 
 //import "utils/tempindex"

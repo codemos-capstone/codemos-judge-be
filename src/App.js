@@ -1,9 +1,9 @@
+import { React, useState } from "react"
 import MainPage from "views/MainPage"
 import Game from "views/Game"
 import Docs from "views/Docs"
 import Login from "views/Login"
 import User from "views/User"
-import { useState } from "react"
 
 export default function App(){
     const [page, setPage] = useState('main');

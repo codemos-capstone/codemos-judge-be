@@ -1,3 +1,4 @@
+import React from "react";
 import "./User.css"
 
 const btnTexts = require('lang/kor.json').user;

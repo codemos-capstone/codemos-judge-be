@@ -1,3 +1,4 @@
+import React from "react";
 import "./Leader.css"
 
 const btnTexts = require('lang/kor.json').leader;
