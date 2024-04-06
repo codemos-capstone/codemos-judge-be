@@ -19,122 +19,6 @@ import { makeTheme } from "./theme.js";
 import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "./helpers/constants.js";
 import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "./helpers/scoring.js";
 
-var serverAddress = "http://18.179.38.25:8080";
-var checkLoginID;
-document.addEventListener("DOMContentLoaded", () => {
-    //로그인 확인
-    console.log(sessionStorage.getItem("jwtToken"));
-    if (sessionStorage.getItem("jwtToken") == null) {
-        console.log("no token");
-        document.querySelector(".home-login-btn").style.display = "block";
-        document.querySelector(".home-logout-btn").style.display = "none";
-        document.querySelector(".home-mypage-btn").style.display = "none";
-    } else {
-        document.querySelector(".home-login-btn").style.display = "none";
-        document.querySelector(".home-logout-btn").style.display = "block";
-        document.querySelector(".home-mypage-btn").style.display = "block";
-        var token = sessionStorage.getItem("jwtToken");
-        fetch(serverAddress + "/api/verify-token", {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(response.status);
-                }
-                if (response.text() == "Invalid token.") {
-                    sessionStorage.removeItem("jwtToken");
-                    document.querySelector(".home-login-btn").style.display = "block";
-                    document.querySelector(".home-logout-btn").style.display = "none";
-                    document.querySelector(".home-mypage-btn").style.display = "none";
-                }
-                return response.json();
-            })
-            .catch((error) => {
-                console.error("Error Code:", error);
-            });
-    }
-    setTimeout(() => {
-        console.log(sessionStorage.getItem("jwtToken"));
-        if (sessionStorage.getItem("jwtToken") == null) {
-            console.log("no token");
-            document.querySelector(".home-login-btn").style.display = "block";
-            document.querySelector(".home-logout-btn").style.display = "none";
-            document.querySelector(".home-mypage-btn").style.display = "none";
-        } else {
-            document.querySelector(".home-login-btn").style.display = "none";
-            document.querySelector(".home-logout-btn").style.display = "block";
-            document.querySelector(".home-mypage-btn").style.display = "block";
-            var token = sessionStorage.getItem("jwtToken");
-            fetch(serverAddress + "/api/verify-token", {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(response.status);
-                    }
-                    if (response.text() == "Invalid token.") {
-                        sessionStorage.removeItem("jwtToken");
-                        document.querySelector(".home-login-btn").style.display = "block";
-                        document.querySelector(".home-logout-btn").style.display = "none";
-                        document.querySelector(".home-mypage-btn").style.display = "none";
-                    }
-                    return response.json();
-                })
-                .catch((error) => {
-                    console.error("Error Code:", error);
-                });
-        }
-    }, 2000);
-});
-
-export function logout() {
-    sessionStorage.removeItem("jwtToken");
-    document.querySelector(".home-login-btn").style.display = "block";
-    document.querySelector(".home-logout-btn").style.display = "none";
-    document.querySelector(".home-mypage-btn").style.display = "none";
-
-    var alertBox = document.createElement("div");
-    alertBox.textContent = "로그아웃됨";
-    alertBox.classList.add("logout-alert");
-    alertBox.style.cssText = `display: none;
-    position: fixed;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #4caf50;
-    color: white;
-    padding: 15px;
-    border-radius: 5px;
-    animation: fadeInOut 2s ease-in-out;`;
-    var keyframes = `@keyframes fadeInOut {
-        0%, 100% {
-            opacity: 0;
-        }
-        20%, 80% {
-            opacity: 1;
-        }
-    }`;
-    var styleElement = document.createElement("style");
-    document.head.appendChild(styleElement);
-    styleElement.sheet.insertRule(keyframes, 0);
-
-    alertBox.style.display = "block";
-    setTimeout(() => {
-        alertBox.remove();
-        styleElement.remove();
-    }, 2000);
-}
-window.logout = logout;
-// SETUP
-
 const audioManager = makeAudioManager();
 const [CTX, canvasWidth, canvasHeight, canvasElement, scaleFactor] = generateCanvas({
     width: 500,
@@ -178,84 +62,48 @@ const lander = makeLander(appState, onGameEnd);
 const landerControls = makeControls(appState, lander, audioManager);
 const tally = makeTallyManger();
 
-
-
-//****************** 서버가 던진거 받아서 초기화 ㄱㄱ ******************* */
-
-// #2
-
-let _allowGetVelocityX = true;
-let _allowGetVelocityY = true;
-let _allowGetAngle = true;
-let _allowGetHeight = true;
-let _allowGetRotationVelocity = true;
-let _allowEngineOn = true;
-let _allowEngineOff = true;
-let _allowRotateLeft = true;
-let _allowStopLeftRotation = true;
-let _allowRotateRight = true;
-let _allowStopRightRotation = true;
-
-//************************************************************** */
-
 export function getVelocityX() {
-    if (_allowGetVelocityX)
-        return lander.getVelocity().x * VELOCITY_MULTIPLIER;
-    else return null;
+    return lander.getVelocity().x * VELOCITY_MULTIPLIER;
 }
 
 export function getVelocityY() {
-    if (_allowGetVelocityY)
-        return lander.getVelocity().y * VELOCITY_MULTIPLIER;
-    else return null;
+    return lander.getVelocity().y * VELOCITY_MULTIPLIER;
 }
 
 export function getAngle() {
-    if (_allowGetAngle)
-        return Number(lander.getAngle());
-    else return null;
+    return Number(lander.getAngle());
 }
 
 export function getHeight() {
-    if (_allowGetHeight)
-        return Number(lander.getHeight());
-    else return null;
+    return Number(lander.getHeight());
 }
 
 export function getRotationVelocity() {
-    if (_allowGetRotationVelocity)
-        return lander.getRotationVelocity();
-    else return null;
+    return lander.getRotationVelocity();
 }
 
 export function engineOn() {
-    if (_allowEngineOn)
-        lander.engineOn();
+    lander.engineOn();
 }
 
 export function engineOff() {
-    if (_allowEngineOff)
-        lander.engineOff();
+    lander.engineOff();
 }
 
 export function rotateLeft() {
-    if (_allowRotateLeft)
-        lander.rotateLeft();
+    lander.rotateLeft();
 }
 
 export function stopLeftRotation() {
-    if (_allowStopLeftRotation)
-        lander.stopLeftRotation();
+    lander.stopLeftRotation();
 }
 
 export function rotateRight() {
-    if (_allowRotateRight)
-        lander.rotateRight();
+    lander.rotateRight();
 }
 
 export function stopRightRotation() {
-    if (_allowStopRightRotation)
-        lander.stopRightRotation();
+    lander.stopRightRotation();
 }
 
 export function logging() {
@@ -399,47 +247,8 @@ function onGameEnd(data) {
 
     tally.updateDisplay();
 
-    // 만약 로그인 된 상태라면
-    setTimeout(() => {
-        console.log(sessionStorage.getItem("jwtToken"));
-        if (sessionStorage.getItem("jwtToken") == null) {
-            return;
-        } else {
-            if (!data.isPressKey) {
-                console.log(data.landed ? finalScore : -finalScore);
-                var isConfirm = confirm((data.landed ? finalScore : -finalScore) + "점 코드를 서버에 저장할까요?");
-                if (isConfirm) {
-                    // TODO: 서버로 요청
+    console.log("fuel : 35.40L & time : 3864ms\ngame end 85.56521739130434 좋은 착륙 85.6\ngame end", finalScore, scoreDescription, scoreForDisplay);
 
-                    serverAddress = "http://18.179.38.25:8080";
-                    fetch(serverAddress + "/api/v1/leaderBoard/create", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: "Bearer " + sessionStorage.getItem("jwtToken"),
-                        },
-                        body: JSON.stringify({
-                            score: parseInt((data.landed ? finalScore : -finalScore) * 100000),
-                            code: _code,
-                            time: data.durationInSeconds.toString(),
-                        }),
-                    })
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error(response.status);
-                            }
-                            return response.json();
-                        })
-                        .catch((err) => {
-                            console.log("err: ", err);
-                        });
-
-                    localStorage.setItem("personalBestScore", data.landed ? finalScore : -finalScore);
-                    console.log(data.landed ? finalScore : -finalScore);
-                }
-            }
-        }
-    }, "1500");
 }
 
 function onResetGame() {
