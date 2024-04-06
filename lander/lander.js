@@ -5,6 +5,7 @@ import { makeLanderExplosion } from "./explosion.js";
 import { makeConfetti } from "./confetti.js";
 import { drawTrajectory } from "./trajectory.js";
 import { transition, clampedProgress, easeInOutSine } from "../helpers/helpers.js";
+import { _mainLoop  } from "../func.js";
 
 export const makeLander = (state, onGameEnd) => {
     const CTX = state.get("CTX");
@@ -263,6 +264,7 @@ export const makeLander = (state, onGameEnd) => {
         }
 
         time += INTERVAL;
+        _mainLoop();
     };
 
     const _drawHUD = () => {

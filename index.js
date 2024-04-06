@@ -62,48 +62,83 @@ const lander = makeLander(appState, onGameEnd);
 const landerControls = makeControls(appState, lander, audioManager);
 const tally = makeTallyManger();
 
+
+//****************** 서버가 던진거 받아서 초기화 ㄱㄱ ******************* */
+
+// #2
+
+let _allowGetVelocityX = true;
+let _allowGetVelocityY = true;
+let _allowGetAngle = true;
+let _allowGetHeight = true;
+let _allowGetRotationVelocity = true;
+let _allowEngineOn = true;
+let _allowEngineOff = true;
+let _allowRotateLeft = true;
+let _allowStopLeftRotation = true;
+let _allowRotateRight = true;
+let _allowStopRightRotation = true;
+
+//************************************************************** */
+
 export function getVelocityX() {
-    return lander.getVelocity().x * VELOCITY_MULTIPLIER;
+    if (_allowGetVelocityX)
+        return lander.getVelocity().x * VELOCITY_MULTIPLIER;
+    else return null;
 }
 
 export function getVelocityY() {
-    return lander.getVelocity().y * VELOCITY_MULTIPLIER;
+    if (_allowGetVelocityY)
+        return lander.getVelocity().y * VELOCITY_MULTIPLIER;
+    else return null;
 }
 
 export function getAngle() {
-    return Number(lander.getAngle());
+    if (_allowGetAngle)
+        return Number(lander.getAngle());
+    else return null;
 }
 
 export function getHeight() {
-    return Number(lander.getHeight());
+    if (_allowGetHeight)
+        return Number(lander.getHeight());
+    else return null;
 }
 
 export function getRotationVelocity() {
-    return lander.getRotationVelocity();
+    if (_allowGetRotationVelocity)
+        return lander.getRotationVelocity();
+    else return null;
 }
 
 export function engineOn() {
-    lander.engineOn();
+    if (_allowEngineOn)
+        lander.engineOn();
 }
 
 export function engineOff() {
-    lander.engineOff();
+    if (_allowEngineOff)
+        lander.engineOff();
 }
 
 export function rotateLeft() {
-    lander.rotateLeft();
+    if (_allowRotateLeft)
+        lander.rotateLeft();
 }
 
 export function stopLeftRotation() {
-    lander.stopLeftRotation();
+    if (_allowStopLeftRotation)
+        lander.stopLeftRotation();
 }
 
 export function rotateRight() {
-    lander.rotateRight();
+    if (_allowRotateRight)
+        lander.rotateRight();
 }
 
 export function stopRightRotation() {
-    lander.stopRightRotation();
+    if (_allowStopRightRotation)
+        lander.stopRightRotation();
 }
 
 export function logging() {
