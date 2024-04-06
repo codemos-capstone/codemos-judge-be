@@ -69,10 +69,10 @@ function register(){
 };
 
 function pageToggle(){
-    var login = document.querySelector('.login-container')
-    var register = document.querySelector('.register-container')
-    login.classList.toggle('hidden')
-    register.classList.toggle('hidden')
+    // var login = document.querySelector('.login-container')
+    // var register = document.querySelector('.register-container')
+    // login.classList.toggle('hidden')
+    // register.classList.toggle('hidden')
 }
 
 function showSuccessMessage() {
