@@ -12,31 +12,54 @@ export const generateCanvas = ({ width, height, attachNode }) => {
   element.height = Math.floor(height * scale);
   context.scale(scale, scale);
 
-  document.querySelector(attachNode).appendChild(element);
 
   return [context, width, height, element, scale];
 };
 
+// export const animate = (drawFunc) => {
+//   let startTime = Date.now();
+//   let currentFrameTime = Date.now();
+//   let previousTimestamp = false;
+
+//   const resetStartTime = () => (startTime = Date.now());
+
+//   const drawFuncContainer = (timestamp) => {
+//     currentFrameTime = Date.now();
+//     const deltaTime = previousTimestamp
+//       ? timestamp - previousTimestamp
+//       : performance.now() - timestamp;
+//     drawFunc(currentFrameTime - startTime, deltaTime);
+//     window.requestAnimationFrame(drawFuncContainer);
+//     previousTimestamp = timestamp;
+//   };
+
+//   window.requestAnimationFrame(drawFuncContainer);
+
+//   return { resetStartTime };
+// };
+
+
 export const animate = (drawFunc) => {
   let startTime = Date.now();
-  let currentFrameTime = Date.now();
-  let previousTimestamp = false;
+  let previousTimestamp = null;
+  let timeoutId = null;
 
   const resetStartTime = () => (startTime = Date.now());
 
-  const drawFuncContainer = (timestamp) => {
-    currentFrameTime = Date.now();
-    const deltaTime = previousTimestamp
-      ? timestamp - previousTimestamp
-      : performance.now() - timestamp;
+  const drawFuncContainer = () => {
+    const currentFrameTime = Date.now();
+    const deltaTime = previousTimestamp ? currentFrameTime - previousTimestamp : 0;
     drawFunc(currentFrameTime - startTime, deltaTime);
-    window.requestAnimationFrame(drawFuncContainer);
-    previousTimestamp = timestamp;
+    previousTimestamp = currentFrameTime;
+    timeoutId = setTimeout(drawFuncContainer, 0);
   };
 
-  window.requestAnimationFrame(drawFuncContainer);
+  timeoutId = setTimeout(drawFuncContainer, 0);
 
-  return { resetStartTime };
+  return {
+    resetStartTime,
+    stop: () => clearTimeout(timeoutId),
+  };
 };
 
 export const randomBool = (probability = 0.5) => Math.random() >= probability;
