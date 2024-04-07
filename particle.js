@@ -94,7 +94,7 @@ export const makeParticle = (
   const draw = (deltaTime) => {
     if (!stopped) update(deltaTime);
 
-    CTX.save();
+    // CTX.save();
 
     if (customDraw) {
       customDraw(
@@ -106,13 +106,13 @@ export const makeParticle = (
         rotationVelocity
       );
     } else {
-      CTX.fillStyle = fill;
-      CTX.translate(position.x, position.y);
-      CTX.rotate(rotationAngle);
-      CTX.fillRect(-width / 2, -height / 2, width, height);
+      // CTX.fillStyle = fill;
+      // CTX.translate(position.x, position.y);
+      // CTX.rotate(rotationAngle);
+      // CTX.fillRect(-width / 2, -height / 2, width, height);
     }
 
-    CTX.restore();
+    // CTX.restore();
   };
 
   return { draw, getPosition: () => position, getVelocity: () => velocity };
@@ -150,6 +150,7 @@ function isShapeInPath(
   });
 
   return dots.find(({ x, y }) =>
-    CTX.isPointInPath(path, x * scaleFactor, y * scaleFactor)
+    // CTX.isPointInPath(path, x * scaleFactor, y * scaleFactor)
+    true
   );
 }

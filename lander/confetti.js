@@ -68,15 +68,15 @@ export const makeConfetti = (state, amount, passedPosition, passedVelocity) => {
       (CTX, position, __, _, fill, rotationVelocity) => {
         const twirlWidth =
           mirroredLoopingProgress(0, 3, Math.abs(rotationVelocity)) * size;
-        CTX.fillStyle = fill;
-        CTX.translate(position.x, position.y);
-        CTX.beginPath();
-        CTX.moveTo(-twirlWidth / 2, 0);
-        CTX.lineTo(0, -size / 2);
-        CTX.lineTo(twirlWidth / 2, 0);
-        CTX.lineTo(0, size / 2);
-        CTX.closePath();
-        CTX.fill();
+        // CTX.fillStyle = fill;
+        // CTX.translate(position.x, position.y);
+        // CTX.beginPath();
+        // CTX.moveTo(-twirlWidth / 2, 0);
+        // CTX.lineTo(0, -size / 2);
+        // CTX.lineTo(twirlWidth / 2, 0);
+        // CTX.lineTo(0, size / 2);
+        // CTX.closePath();
+        // CTX.fill();
       },
       false
     );
@@ -92,16 +92,16 @@ export const makeConfetti = (state, amount, passedPosition, passedVelocity) => {
           // audio.playConfetti();
           hasPlayedAudio = true;
         }
-        CTX.save();
+        // CTX.save();
         const animationProgress = clampedProgress(
           0,
           visibilityDuration,
           Date.now() - timeOfInit
         );
-        CTX.globalAlpha = transition(1, 0, animationProgress, easeInExpo);
+        // CTX.globalAlpha = transition(1, 0, animationProgress, easeInExpo);
         confettiPieces.forEach((e) => e.draw(deltaTime));
         twirlPieces.forEach((e) => e.draw(deltaTime));
-        CTX.restore();
+        // CTX.restore();
       }
     }
   };

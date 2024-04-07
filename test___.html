@@ -1,0 +1,52 @@
+
+<script src="index.js" type="module"></script>
+
+<script>
+
+
+function resetGameHandler() {
+    onResetGame();
+}
+
+function applyCodeHandler() {
+applyCode(`
+
+var landAlt = -10;
+function calcTargetAngle() {
+    var angle = 0;
+    angle -= (getVelocityX() * 4);
+    if (angle > 70) angle = 70
+    if (angle < -70) angle = -70
+    return angle
+}
+function angleControl(targetAngle) {
+    if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+        stopRightRotation();
+        rotateLeft();
+    } else {
+        stopLeftRotation();
+        rotateRight();       
+    }
+}
+function engineControl() {
+    if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+        ((getAngle() > 0 && getVelocityX() < -0.1) ||
+        getAngle() < 0 && getVelocityX() > 2)) ||
+        (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+        (Math.abs(getAngle()) < 90))
+        engineOn();
+    else
+        engineOff();
+}
+_mainLoop = function() {
+    // angleControl(calcTargetAngle())
+    engineControl()
+};
+
+`);
+    }
+
+</script>
+
+<button class="apply-btn" onclick="applyCodeHandler()">Apply</button>
+<button class="apply-btn" onclick="resetGameHandler()">ResetGame</button>

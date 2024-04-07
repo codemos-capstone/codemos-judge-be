@@ -148,37 +148,37 @@ export const makeControls = (state, lander, audioManager) => {
   }
 
   const attachEventListeners = () => {
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("keyup", onKeyUp);
-    canvasElement.addEventListener("touchstart", onTouchStart);
-    canvasElement.addEventListener("touchmove", onTouchMove);
-    canvasElement.addEventListener("touchend", onTouchEnd);
+    // document.addEventListener("keydown", onKeyDown);
+    // document.addEventListener("keyup", onKeyUp);
+    // canvasElement.addEventListener("touchstart", onTouchStart);
+    // canvasElement.addEventListener("touchmove", onTouchMove);
+    // canvasElement.addEventListener("touchend", onTouchEnd);
   };
 
   const detachEventListeners = () => {
-    document.removeEventListener("keydown", onKeyDown);
-    document.removeEventListener("keyup", onKeyUp);
-    canvasElement.removeEventListener("touchstart", onTouchStart);
-    canvasElement.removeEventListener("touchmove", onTouchMove);
-    canvasElement.removeEventListener("touchend", onTouchEnd);
+    // document.removeEventListener("keydown", onKeyDown);
+    // document.removeEventListener("keyup", onKeyUp);
+    // canvasElement.removeEventListener("touchstart", onTouchStart);
+    // canvasElement.removeEventListener("touchmove", onTouchMove);
+    // canvasElement.removeEventListener("touchend", onTouchEnd);
   };
 
   const drawTouchOverlay = () => {
-    CTX.save();
-    CTX.fillStyle = "rgba(255, 255, 255, 0.07)";
+    // CTX.save();
+    // CTX.fillStyle = "rgba(255, 255, 255, 0.07)";
     if (showLeftOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("left");
-      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
     if (showCenterOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("center");
-      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
     if (showRightOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("right");
-      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
-    CTX.restore();
+    // CTX.restore();
   };
 
   return {

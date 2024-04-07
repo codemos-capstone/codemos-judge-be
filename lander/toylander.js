@@ -56,10 +56,10 @@ export const makeToyLander = (
     _angle += (Math.PI / 180) * _rotationVelocity;
 
     // Move to top left of the lander and then rotate at that origin
-    CTX.save();
-    CTX.fillStyle = state.get("theme").toyLanderGradient(_toyLanderWidth);
-    CTX.translate(_position.x, _position.y);
-    CTX.rotate(_angle);
+    // CTX.save();
+    // CTX.fillStyle = state.get("theme").toyLanderGradient(_toyLanderWidth);
+    // CTX.translate(_position.x, _position.y);
+    // CTX.rotate(_angle);
 
     // Draw the lander
     //
@@ -73,54 +73,54 @@ export const makeToyLander = (
     //                                     /  \
     // Start at top left of this segment → |  |
     // and work clockwise.                 |__|
-    CTX.beginPath();
-    CTX.moveTo(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
-    CTX.lineTo(0, -(_toyLanderHeight * 0.9));
-    CTX.lineTo(_toyLanderWidth / 2, -_toyLanderHeight / 2);
-    CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight / 2);
-    CTX.lineTo(-_toyLanderWidth / 2, _toyLanderHeight / 2);
-    CTX.closePath();
-    CTX.fill();
+    // CTX.beginPath();
+    // CTX.moveTo(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
+    // CTX.lineTo(0, -(_toyLanderHeight * 0.9));
+    // CTX.lineTo(_toyLanderWidth / 2, -_toyLanderHeight / 2);
+    // CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight / 2);
+    // CTX.lineTo(-_toyLanderWidth / 2, _toyLanderHeight / 2);
+    // CTX.closePath();
+    // CTX.fill();
 
-    CTX.beginPath();
-    CTX.moveTo(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
-    CTX.lineTo(0, -(_toyLanderHeight * 0.9));
-    CTX.lineTo(_toyLanderWidth / 2, -_toyLanderHeight / 2);
-    CTX.arc(0, 0, Math.sqrt(_toyLanderWidth * _toyLanderWidth + _toyLanderHeight * _toyLanderHeight) / 2, 2 * Math.PI - Math.atan2(_toyLanderHeight, _toyLanderWidth), Math.PI + Math.atan2(_toyLanderHeight, _toyLanderWidth), true);
-    CTX.fillStyle = state.get("theme").threeGradient("#EB8C0C", '#6a3b0c', "#401f1a", _toyLanderWidth, 0, 0.5);
-    CTX.fill();
+    // CTX.beginPath();
+    // CTX.moveTo(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
+    // CTX.lineTo(0, -(_toyLanderHeight * 0.9));
+    // CTX.lineTo(_toyLanderWidth / 2, -_toyLanderHeight / 2);
+    // CTX.arc(0, 0, Math.sqrt(_toyLanderWidth * _toyLanderWidth + _toyLanderHeight * _toyLanderHeight) / 2, 2 * Math.PI - Math.atan2(_toyLanderHeight, _toyLanderWidth), Math.PI + Math.atan2(_toyLanderHeight, _toyLanderWidth), true);
+    // CTX.fillStyle = state.get("theme").threeGradient("#EB8C0C", '#6a3b0c', "#401f1a", _toyLanderWidth, 0, 0.5);
+    // CTX.fill();
 
-    CTX.beginPath();
-    CTX.moveTo(-_toyLanderWidth / 2, 0);
-    CTX.lineTo(-_toyLanderWidth , 5 *_toyLanderHeight / 8);
-    CTX.lineTo(-_toyLanderWidth / 2, _toyLanderHeight / 2);
-    CTX.closePath();
-    CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", "#4A4E6F", "#3D4264", _toyLanderWidth / 2, -3 * _toyLanderWidth / 4, 0.8);
-    CTX.fill();
+    // CTX.beginPath();
+    // CTX.moveTo(-_toyLanderWidth / 2, 0);
+    // CTX.lineTo(-_toyLanderWidth , 5 *_toyLanderHeight / 8);
+    // CTX.lineTo(-_toyLanderWidth / 2, _toyLanderHeight / 2);
+    // CTX.closePath();
+    // CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", "#4A4E6F", "#3D4264", _toyLanderWidth / 2, -3 * _toyLanderWidth / 4, 0.8);
+    // CTX.fill();
 
-    CTX.beginPath();
-    CTX.moveTo(_toyLanderWidth / 2, 0);
-    CTX.lineTo(_toyLanderWidth , 5 *_toyLanderHeight / 8);
-    CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight / 2);
-    CTX.closePath();
-    CTX.fillStyle = state.get("theme").threeGradient("#3D4264", "#4A4E6F", "#DFE5E5", _toyLanderWidth / 2, 3 * _toyLanderWidth / 4, 0.2);
-    CTX.fill();
+    // CTX.beginPath();
+    // CTX.moveTo(_toyLanderWidth / 2, 0);
+    // CTX.lineTo(_toyLanderWidth , 5 *_toyLanderHeight / 8);
+    // CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight / 2);
+    // CTX.closePath();
+    // CTX.fillStyle = state.get("theme").threeGradient("#3D4264", "#4A4E6F", "#DFE5E5", _toyLanderWidth / 2, 3 * _toyLanderWidth / 4, 0.2);
+    // CTX.fill();
 
-    CTX.beginPath();
-    CTX.moveTo(0, 0.2 * _toyLanderHeight);
-    CTX.lineTo(- _toyLanderWidth / 4, _toyLanderHeight / 2);
-    CTX.lineTo(0, 0.8 * _toyLanderHeight);
-    CTX.lineTo(_toyLanderWidth / 4, _toyLanderHeight / 2);
-    CTX.closePath();
-    CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", '#262b4f', "#4A4E6F", _toyLanderWidth / 2, 0, 0.5);
-    CTX.fill();
+    // CTX.beginPath();
+    // CTX.moveTo(0, 0.2 * _toyLanderHeight);
+    // CTX.lineTo(- _toyLanderWidth / 4, _toyLanderHeight / 2);
+    // CTX.lineTo(0, 0.8 * _toyLanderHeight);
+    // CTX.lineTo(_toyLanderWidth / 4, _toyLanderHeight / 2);
+    // CTX.closePath();
+    // CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", '#262b4f', "#4A4E6F", _toyLanderWidth / 2, 0, 0.5);
+    // CTX.fill();
 
     // Translate to the top-left corner of the lander so engine and booster
     // flames can be drawn from 0, 0
-    CTX.translate(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
+    // CTX.translate(-_toyLanderWidth / 2, -_toyLanderHeight / 2);
 
     if (_engineOn || _rotatingLeft || _rotatingRight) {
-      CTX.fillStyle = randomBool() ? "#415B8C" : "#F3AFA3";
+      // CTX.fillStyle = randomBool() ? "#415B8C" : "#F3AFA3";
     }
 
     // Main engine flame
@@ -130,12 +130,12 @@ export const makeToyLander = (
         _toyLanderEngineLengthMax
       );
       const _flameMargin = _toyLanderWidth / 6;
-      CTX.beginPath();
-      CTX.moveTo(_flameMargin, _toyLanderHeight);
-      CTX.lineTo(_toyLanderWidth - _flameMargin, _toyLanderHeight);
-      CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight + _flameHeight);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.beginPath();
+      // CTX.moveTo(_flameMargin, _toyLanderHeight);
+      // CTX.lineTo(_toyLanderWidth - _flameMargin, _toyLanderHeight);
+      // CTX.lineTo(_toyLanderWidth / 2, _toyLanderHeight + _flameHeight);
+      // CTX.closePath();
+      // CTX.fill();
     }
 
     const _boosterLength = randomBetween(
@@ -144,25 +144,25 @@ export const makeToyLander = (
     );
     // Right booster flame
     if (_rotatingLeft) {
-      CTX.beginPath();
-      CTX.moveTo(_toyLanderWidth, 0);
-      CTX.lineTo(_toyLanderWidth + _boosterLength, _toyLanderHeight * 0.05);
-      CTX.lineTo(_toyLanderWidth, _toyLanderHeight * 0.1);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.beginPath();
+      // CTX.moveTo(_toyLanderWidth, 0);
+      // CTX.lineTo(_toyLanderWidth + _boosterLength, _toyLanderHeight * 0.05);
+      // CTX.lineTo(_toyLanderWidth, _toyLanderHeight * 0.1);
+      // CTX.closePath();
+      // CTX.fill();
     }
 
     // Left booster flame
     if (_rotatingRight) {
-      CTX.beginPath();
-      CTX.moveTo(0, 0);
-      CTX.lineTo(-_boosterLength, _toyLanderHeight * 0.05);
-      CTX.lineTo(0, _toyLanderHeight * 0.1);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.beginPath();
+      // CTX.moveTo(0, 0);
+      // CTX.lineTo(-_boosterLength, _toyLanderHeight * 0.05);
+      // CTX.lineTo(0, _toyLanderHeight * 0.1);
+      // CTX.closePath();
+      // CTX.fill();
     }
 
-    CTX.restore();
+    // CTX.restore();
   };
 
   return {

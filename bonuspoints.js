@@ -84,63 +84,63 @@ export const makeBonusPointsManager = (state) => {
     if (!hidden && totalPoints > 0 && timeElapsed < timeToShowPointsInMS) {
       const yPosBasis = displayOffset ? LANDER_HEIGHT * 2 : canvasHeight / 2;
 
-      CTX.save();
-      CTX.fillStyle = state.get("theme").headlineFontColor;
-      CTX.translate(
-        canvasWidth / 2,
-        yPosBasis -
-          transitionInOut(
-            -16,
-            0,
-            24,
-            500,
-            timeToShowPointsInMS,
-            timeElapsed,
-            easeOutBack,
-            easeInOutSine
-          )
-      );
-      CTX.globalAlpha = transitionInOut(
-        0.5,
-        1,
-        0,
-        400,
-        timeToShowPointsInMS,
-        timeElapsed,
-        easeInOutSine,
-        easeInOutSine
-      );
-      CTX.scale(
-        transitionInOut(
-          0.98,
-          1,
-          1,
-          600,
-          timeToShowPointsInMS,
-          timeElapsed,
-          easeOutBack,
-          easeInOutSine
-        ),
-        transitionInOut(
-          0.98,
-          1,
-          1,
-          600,
-          timeToShowPointsInMS,
-          timeElapsed,
-          easeOutBack,
-          easeInOutSine
-        )
-      );
+      // CTX.save();
+      // CTX.fillStyle = state.get("theme").headlineFontColor;
+      // CTX.translate(
+      //   canvasWidth / 2,
+      //   yPosBasis -
+      //     transitionInOut(
+      //       -16,
+      //       0,
+      //       24,
+      //       500,
+      //       timeToShowPointsInMS,
+      //       timeElapsed,
+      //       easeOutBack,
+      //       easeInOutSine
+      //     )
+      // );
+      // CTX.globalAlpha = transitionInOut(
+      //   0.5,
+      //   1,
+      //   0,
+      //   400,
+      //   timeToShowPointsInMS,
+      //   timeElapsed,
+      //   easeInOutSine,
+      //   easeInOutSine
+      // );
+      // CTX.scale(
+      //   transitionInOut(
+      //     0.98,
+      //     1,
+      //     1,
+      //     600,
+      //     timeToShowPointsInMS,
+      //     timeElapsed,
+      //     easeOutBack,
+      //     easeInOutSine
+      //   ),
+      //   transitionInOut(
+      //     0.98,
+      //     1,
+      //     1,
+      //     600,
+      //     timeToShowPointsInMS,
+      //     timeElapsed,
+      //     easeOutBack,
+      //     easeInOutSine
+      //   )
+      // );
 
-      CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-      CTX.textAlign = "center";
-      CTX.fillText(`${lastPointLabel} +${lastPointValue}`, 0, -12);
+      // CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+      // CTX.textAlign = "center";
+      // CTX.fillText(`${lastPointLabel} +${lastPointValue}`, 0, -12);
 
-      CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-      CTX.letterSpacing = "1px";
-      CTX.fillText(`${totalPoints} TOTAL BONUS`, 0, 12);
-      CTX.restore();
+      // CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+      // CTX.letterSpacing = "1px";
+      // CTX.fillText(`${totalPoints} TOTAL BONUS`, 0, 12);
+      // CTX.restore();
     }
   };
 

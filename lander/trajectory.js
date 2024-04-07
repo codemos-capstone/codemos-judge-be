@@ -25,12 +25,12 @@ export const drawTrajectory = (
     while (
       projectedYPosition <= canvasHeight &&
       projectedXPosition <= canvasWidth &&
-      projectedXPosition >= 0 &&
-      !CTX.isPointInPath(
-        terrainLandingData.terrainPath2D,
-        projectedXPosition * scaleFactor,
-        projectedYPosition * scaleFactor
-      )
+      projectedXPosition >= 0 && false
+      // !CTX.isPointInPath(
+      //   terrainLandingData.terrainPath2D,
+      //   projectedXPosition * scaleFactor,
+      //   projectedYPosition * scaleFactor
+      // )
     ) {
       segments.push({ x: projectedXPosition, y: projectedYPosition });
 
@@ -57,18 +57,18 @@ export const drawTrajectory = (
   const [segments, lastSegment] = generateTrajectoryPoints();
 
   if (segments.length > 20) {
-    CTX.save();
-    CTX.globalAlpha = 0.4;
+    // CTX.save();
+    // CTX.globalAlpha = 0.4;
 
     const gradientLength = Math.floor(segments.length / 2);
     segments.forEach(({ x, y }, index) => {
       if (segments.length > index + 1) {
         const nextSegment = segments[index + 1];
-        CTX.beginPath();
-        CTX.moveTo(x, y);
-        CTX.lineTo(nextSegment.x, nextSegment.y);
-        CTX.strokeStyle = `rgba(255, 255, 255, ${index / gradientLength})`;
-        CTX.stroke();
+        // CTX.beginPath();
+        // CTX.moveTo(x, y);
+        // CTX.lineTo(nextSegment.x, nextSegment.y);
+        // CTX.strokeStyle = `rgba(255, 255, 255, ${index / gradientLength})`;
+        // CTX.stroke();
       }
     });
 
@@ -85,23 +85,23 @@ export const drawTrajectory = (
         Math.min(lastSegment.projectedYVelocity * 30, 60),
         5
       );
-      CTX.globalAlpha = 1;
-      CTX.strokeStyle = "#fff";
-      CTX.translate(
-        lastSegment.projectedXPosition,
-        lastSegment.projectedYPosition
-      );
-      CTX.rotate(lastSegment.projectedAngle + Math.PI);
-      CTX.beginPath();
-      CTX.moveTo(0, 0);
-      CTX.lineTo(0, arrowLength);
-      CTX.lineTo(-arrowSize, arrowLength);
-      CTX.lineTo(0, arrowLength + arrowSize);
-      CTX.lineTo(arrowSize, arrowLength);
-      CTX.lineTo(0, arrowLength);
-      CTX.closePath();
-      CTX.stroke();
+      // CTX.globalAlpha = 1;
+      // CTX.strokeStyle = "#fff";
+      // CTX.translate(
+      //   lastSegment.projectedXPosition,
+      //   lastSegment.projectedYPosition
+      // );
+      // CTX.rotate(lastSegment.projectedAngle + Math.PI);
+      // CTX.beginPath();
+      // CTX.moveTo(0, 0);
+      // CTX.lineTo(0, arrowLength);
+      // CTX.lineTo(-arrowSize, arrowLength);
+      // CTX.lineTo(0, arrowLength + arrowSize);
+      // CTX.lineTo(arrowSize, arrowLength);
+      // CTX.lineTo(0, arrowLength);
+      // CTX.closePath();
+      // CTX.stroke();
     }
-    CTX.restore();
+    // CTX.restore();
   }
 };

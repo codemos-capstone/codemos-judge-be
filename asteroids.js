@@ -50,20 +50,20 @@ export const makeAsteroid = (state, getLanderPosition, onLanderCollision) => {
     size,
     fill,
     (CTX, position, _, rotationAngle, fill) => {
-      CTX.fillStyle = fill;
-      CTX.translate(position.x, position.y);
-      CTX.rotate(rotationAngle);
-      CTX.beginPath();
-      CTX.moveTo(-size * 0.5, 0);
-      CTX.lineTo(-size * 0.4, -size * 0.4);
-      CTX.lineTo(0, -size * 0.5);
-      CTX.lineTo(size * 0.4, -size * 0.4);
-      CTX.lineTo(size * 0.5, 0);
-      CTX.lineTo(size * 0.3, size * 0.3);
-      CTX.lineTo(0, size * 0.5);
-      CTX.lineTo(-size * 0.35, size * 0.4);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.fillStyle = fill;
+      // CTX.translate(position.x, position.y);
+      // CTX.rotate(rotationAngle);
+      // CTX.beginPath();
+      // CTX.moveTo(-size * 0.5, 0);
+      // CTX.lineTo(-size * 0.4, -size * 0.4);
+      // CTX.lineTo(0, -size * 0.5);
+      // CTX.lineTo(size * 0.4, -size * 0.4);
+      // CTX.lineTo(size * 0.5, 0);
+      // CTX.lineTo(size * 0.3, size * 0.3);
+      // CTX.lineTo(0, size * 0.5);
+      // CTX.lineTo(-size * 0.35, size * 0.4);
+      // CTX.closePath();
+      // CTX.fill();
     },
     true,
     onImpact

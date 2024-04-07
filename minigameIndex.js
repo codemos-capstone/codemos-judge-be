@@ -153,17 +153,17 @@ if (instructions.hasClosedInstructions()) {
 // MAIN ANIMATION LOOP
 
 const animationObject = animate((timeSinceStart, deltaTime) => {
-    CTX.fillStyle = theme.backgroundGradient;
-    CTX.fillRect(0, 0, canvasWidth, canvasHeight);
+    // CTX.fillStyle = theme.backgroundGradient;
+    // CTX.fillRect(0, 0, canvasWidth, canvasHeight);
 
-    // Move stars in parallax as lander flies high
-    stars.draw(lander.getVelocity());
+    // // Move stars in parallax as lander flies high
+    // stars.draw(lander.getVelocity());
 
-    // Move terrain as lander flies high
-    CTX.save();
-    CTX.translate(0, transition(0, terrain.getLandingData().terrainHeight, clampedProgress(TRANSITION_TO_SPACE, 0, lander.getPosition().y)));
-    terrain.draw();
-    CTX.restore();
+    // // Move terrain as lander flies high
+    // CTX.save();
+    // CTX.translate(0, transition(0, terrain.getLandingData().terrainHeight, clampedProgress(TRANSITION_TO_SPACE, 0, lander.getPosition().y)));
+    // terrain.draw();
+    // CTX.restore();
 
     if (!instructions.hasClosedInstructions()) {
         landerControls.drawTouchOverlay();
@@ -185,12 +185,12 @@ const animationObject = animate((timeSinceStart, deltaTime) => {
         }
 
         // Move asteroids as lander flies high
-        CTX.save();
-        CTX.translate(0, transition(0, terrain.getLandingData().terrainHeight, clampedProgress(TRANSITION_TO_SPACE, 0, lander.getPosition().y)));
-        if (sendAsteroid && timeSinceStart > asteroidCountdown) {
-            //asteroids.forEach((a) => a.draw(deltaTime));
-        }
-        CTX.restore();
+        // CTX.save();
+        // CTX.translate(0, transition(0, terrain.getLandingData().terrainHeight, clampedProgress(TRANSITION_TO_SPACE, 0, lander.getPosition().y)));
+        // if (sendAsteroid && timeSinceStart > asteroidCountdown) {
+        //     //asteroids.forEach((a) => a.draw(deltaTime));
+        // }
+        // CTX.restore();
 
         if (randomConfetti.length > 0) {
             randomConfetti.forEach((c) => c.draw(deltaTime));

@@ -36,20 +36,20 @@ export const makeStarfield = (state) => {
           ? canvasHeight
           : position.y - (velocity.y * distance) / 10;
 
-      CTX.save();
-      CTX.globalAlpha = opacity;
-      CTX.fillStyle = state.get("theme").star;
-      CTX.beginPath();
-      CTX.arc(
-        position.x,
-        position.y,
-        transition(0.2, 1.5, distance),
-        0,
-        Math.PI * 2
-      );
-      CTX.closePath();
-      CTX.fill();
-      CTX.restore();
+      // CTX.save();
+      // CTX.globalAlpha = opacity;
+      // CTX.fillStyle = state.get("theme").star;
+      // CTX.beginPath();
+      // CTX.arc(
+      //   position.x,
+      //   position.y,
+      //   transition(0.2, 1.5, distance),
+      //   0,
+      //   Math.PI * 2
+      // );
+      // CTX.closePath();
+      // CTX.fill();
+      // CTX.restore();
     });
   };
 

@@ -20,7 +20,7 @@ export const manageInstructions = (onCloseInstructions) => {
   // Using an approximation. controls.getHasKeyboard() can't be used here
   // because the user is unlikely to have used the keyboard when the page has
   // just loaded and is showing instructions
-  const likelyTouchDevice = window.matchMedia("(any-pointer: coarse)").matches;
+  // const likelyTouchDevice = window.matchMedia("(any-pointer: coarse)").matches;
 
   const show = () => {
   //   document.querySelector("#instructions").classList.add("show");

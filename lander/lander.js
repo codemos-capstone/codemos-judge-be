@@ -131,6 +131,8 @@ export const makeLander = (state, onGameEnd) => {
             maxHeight: heightInFeet(_maxHeight, _groundedHeight),
             speedPercent: percentProgress(0, CRASH_VELOCITY, getVectorVelocity(_velocity)),
             anglePercent: percentProgress(0, CRASH_ANGLE, getAngleDeltaUpright(_angle)),
+            fuel: fuel,
+            time: time
         };
         if (landed) {
             const score = scoreLanding(getAngleDeltaUpright(_angle), getVectorVelocity(_velocity));
@@ -180,7 +182,7 @@ export const makeLander = (state, onGameEnd) => {
         if (
             _position.y + LANDER_HEIGHT / 2 < _landingData.terrainHeight ||
             (_position.y + LANDER_HEIGHT / 2 >= _landingData.terrainHeight &&
-                !CTX.isPointInPath(_landingData.terrainPath2D, _position.x * state.get("scaleFactor"), (_position.y + LANDER_HEIGHT / 2) * state.get("scaleFactor")))
+                false)//!CTX.isPointInPath(_landingData.terrainPath2D, _position.x * state.get("scaleFactor"), (_position.y + LANDER_HEIGHT / 2) * state.get("scaleFactor")))
         ) {
             // Update ballistic properties
             // xxx : #3
@@ -208,7 +210,7 @@ export const makeLander = (state, onGameEnd) => {
                 fuel += deltaTimeMultiplier * _thrust * 20; // xxx : #4
             }
 
-            console.log("fuel : " + fuel.toFixed(2) + "L & time : " + time + "ms");
+            // console.log("fuel : " + fuel.toFixed(2) + "L & time : " + time + "ms");
 
             // Log new rotations
             const rotations = Math.floor(_angle / (Math.PI * 2));
@@ -268,7 +270,7 @@ export const makeLander = (state, onGameEnd) => {
     };
 
     const _drawHUD = () => {
-        const textWidth = CTX.measureText("100.0 MPH").width + 2;
+        const textWidth = 1;//CTX.measureText("100.0 MPH").width + 2;
         const xPosBasis = Math.abs(_velocity.x) > 6 ? canvasWidth / 2 - textWidth / 2 : Math.min(_position.x + LANDER_WIDTH * 2, canvasWidth - textWidth);
         const yPosBasis = Math.max(_position.y, TRANSITION_TO_SPACE);
         const lineHeight = 14;
@@ -277,15 +279,15 @@ export const makeLander = (state, onGameEnd) => {
         const angleColor = getAngleDeltaUpright(_angle) > CRASH_ANGLE ? "rgb(255, 0, 0)" : "rgb(0, 255, 0)";
 
         // Draw HUD text
-        CTX.save();
-        CTX.font = "400 10px -apple-system, BlinkMacSystemFont, sans-serif";
-        CTX.fillStyle = speedColor;
-        CTX.fillText(`${velocityInMPH(_velocity)} MPH`, xPosBasis, yPosBasis - lineHeight);
-        CTX.fillStyle = angleColor;
-        CTX.fillText(`${getAngleDeltaUprightWithSign(_angle).toFixed(1)}°`, xPosBasis, yPosBasis);
-        CTX.fillStyle = state.get("theme").infoFontColor;
-        CTX.fillText(`${heightInFeet(_position.y, _groundedHeight)} FT`, xPosBasis, yPosBasis + lineHeight);
-        CTX.restore();
+        // CTX.save();
+        // CTX.font = "400 10px -apple-system, BlinkMacSystemFont, sans-serif";
+        // CTX.fillStyle = speedColor;
+        // CTX.fillText(`${velocityInMPH(_velocity)} MPH`, xPosBasis, yPosBasis - lineHeight);
+        // CTX.fillStyle = angleColor;
+        // CTX.fillText(`${getAngleDeltaUprightWithSign(_angle).toFixed(1)}°`, xPosBasis, yPosBasis);
+        // CTX.fillStyle = state.get("theme").infoFontColor;
+        // CTX.fillText(`${heightInFeet(_position.y, _groundedHeight)} FT`, xPosBasis, yPosBasis + lineHeight);
+        // CTX.restore();
 
         // Draw hud rotation direction arrow
         const arrowHeight = 7;
@@ -293,25 +295,25 @@ export const makeLander = (state, onGameEnd) => {
         const arrowTextMargin = 3;
         const arrowVerticalOffset = -3;
         if (rotatingLeft) {
-            CTX.save();
-            CTX.strokeStyle = angleColor;
-            CTX.beginPath();
-            CTX.moveTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset);
-            CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset - arrowHeight / 2);
-            CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset + arrowHeight / 2);
-            CTX.closePath();
-            CTX.stroke();
-            CTX.restore();
+            // CTX.save();
+            // CTX.strokeStyle = angleColor;
+            // CTX.beginPath();
+            // CTX.moveTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset);
+            // CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset - arrowHeight / 2);
+            // CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset + arrowHeight / 2);
+            // CTX.closePath();
+            // CTX.stroke();
+            // CTX.restore();
         } else {
-            CTX.save();
-            CTX.strokeStyle = angleColor;
-            CTX.beginPath();
-            CTX.moveTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset - arrowHeight / 2);
-            CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset);
-            CTX.lineTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset + arrowHeight / 2);
-            CTX.closePath();
-            CTX.stroke();
-            CTX.restore();
+            // CTX.save();
+            // CTX.strokeStyle = angleColor;
+            // CTX.beginPath();
+            // CTX.moveTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset - arrowHeight / 2);
+            // CTX.lineTo(xPosBasis - arrowTextMargin, yPosBasis + arrowVerticalOffset);
+            // CTX.lineTo(xPosBasis - arrowWidth - arrowTextMargin, yPosBasis + arrowVerticalOffset + arrowHeight / 2);
+            // CTX.closePath();
+            // CTX.stroke();
+            // CTX.restore();
         }
     };
 
@@ -321,38 +323,38 @@ export const makeLander = (state, onGameEnd) => {
 
         const secondsUntilTerrain = _velocity.y > 0 ? Math.abs(Math.round((_position.y - canvasHeight + (canvasHeight - _landingData.terrainAvgHeight)) / _velocity.y / 100)) : 99;
 
-        CTX.save();
+        // CTX.save();
 
-        CTX.fillStyle = state.get("theme").infoFontColor;
-        CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-        CTX.textAlign = "left";
-        CTX.fillText(`${velocityInMPH(_velocity)}`, xPadding, canvasHeight - yPadding - 24);
-        CTX.letterSpacing = "1px";
-        CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-        CTX.fillText("MPH", xPadding, canvasHeight - yPadding);
+        // CTX.fillStyle = state.get("theme").infoFontColor;
+        // CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+        // CTX.textAlign = "left";
+        // CTX.fillText(`${velocityInMPH(_velocity)}`, xPadding, canvasHeight - yPadding - 24);
+        // CTX.letterSpacing = "1px";
+        // CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+        // CTX.fillText("MPH", xPadding, canvasHeight - yPadding);
 
-        CTX.textAlign = "right";
-        CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-        CTX.fillText(`${heightInFeet(_position.y, _groundedHeight)}`, canvasWidth - xPadding, canvasHeight - yPadding - 24);
-        CTX.letterSpacing = "1px";
-        CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-        CTX.fillText("FT", canvasWidth - xPadding, canvasHeight - yPadding);
+        // CTX.textAlign = "right";
+        // CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+        // CTX.fillText(`${heightInFeet(_position.y, _groundedHeight)}`, canvasWidth - xPadding, canvasHeight - yPadding - 24);
+        // CTX.letterSpacing = "1px";
+        // CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+        // CTX.fillText("FT", canvasWidth - xPadding, canvasHeight - yPadding);
 
         if (secondsUntilTerrain < 15) {
-            CTX.fillStyle = "rgb(255, 0, 0)";
-            CTX.textAlign = "center";
-            CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-            CTX.fillText(Intl.NumberFormat().format(secondsUntilTerrain), canvasWidth / 2, canvasHeight - yPadding - 24);
-            CTX.letterSpacing = "1px";
-            CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
-            CTX.fillText("SECONDS UNTIL TERRAIN", canvasWidth / 2, canvasHeight - yPadding);
+            // CTX.fillStyle = "rgb(255, 0, 0)";
+            // CTX.textAlign = "center";
+            // CTX.font = "800 24px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+            // CTX.fillText(Intl.NumberFormat().format(secondsUntilTerrain), canvasWidth / 2, canvasHeight - yPadding - 24);
+            // CTX.letterSpacing = "1px";
+            // CTX.font = "400 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif";
+            // CTX.fillText("SECONDS UNTIL TERRAIN", canvasWidth / 2, canvasHeight - yPadding);
         }
 
-        CTX.restore();
+        // CTX.restore();
     };
 
     const _drawLander = () => {
-        CTX.save();
+        // CTX.save();
 
         // The lander positions is handled differently in two "altitude zones"
         // Zone 1:
@@ -363,7 +365,7 @@ export const makeLander = (state, onGameEnd) => {
         //   viewport heights, it's moved linearly to the center of the screen
 
         // Zone 1 positioning
-        CTX.translate(_position.x, _position.y < TRANSITION_TO_SPACE ? TRANSITION_TO_SPACE : _position.y);
+        // CTX.translate(_position.x, _position.y < TRANSITION_TO_SPACE ? TRANSITION_TO_SPACE : _position.y);
 
         _displayPosition.y = _position.y < TRANSITION_TO_SPACE ? TRANSITION_TO_SPACE : _position.y;
 
@@ -371,11 +373,11 @@ export const makeLander = (state, onGameEnd) => {
         if (_isFixedPositionInSpace()) {
             const yPosTransition = transition(0, canvasHeight / 2 - TRANSITION_TO_SPACE, clampedProgress(0, -canvasHeight * 2, _position.y), easeInOutSine);
 
-            CTX.translate(0, yPosTransition);
+            // CTX.translate(0, yPosTransition);
             _displayPosition.y += yPosTransition;
         }
 
-        CTX.rotate(_angle);
+        // CTX.rotate(_angle);
 
         // Draw the lander
         //
@@ -389,91 +391,91 @@ export const makeLander = (state, onGameEnd) => {
         //                                     /  \
         // Start at top left of this segment → |  |
         // and work clockwise.                 |__|
-        CTX.beginPath();
-        CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
-        CTX.lineTo(0, -LANDER_HEIGHT);
-        CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
-        CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
-        CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
-        CTX.closePath();
-        CTX.fillStyle = state.get("theme").landerGradient;
-        CTX.fill();
+        // CTX.beginPath();
+        // CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
+        // CTX.lineTo(0, -LANDER_HEIGHT);
+        // CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
+        // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
+        // CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
+        // CTX.closePath();
+        // CTX.fillStyle = state.get("theme").landerGradient;
+        // CTX.fill();
         
-        CTX.beginPath();
-        CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
-        CTX.lineTo(0, -(LANDER_HEIGHT));
-        CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
-        CTX.arc(0, 0, Math.sqrt(LANDER_WIDTH * LANDER_WIDTH + LANDER_HEIGHT * LANDER_HEIGHT) / 2, 2 * Math.PI - Math.atan2(LANDER_HEIGHT, LANDER_WIDTH), Math.PI + Math.atan2(LANDER_HEIGHT, LANDER_WIDTH), true);
-        CTX.fillStyle = state.get("theme").threeGradient("#EB8C0C", '#6a3b0c', "#401f1a", LANDER_WIDTH, 0, 0.5);
-        CTX.fill();
+        // CTX.beginPath();
+        // CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
+        // CTX.lineTo(0, -(LANDER_HEIGHT));
+        // CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
+        // CTX.arc(0, 0, Math.sqrt(LANDER_WIDTH * LANDER_WIDTH + LANDER_HEIGHT * LANDER_HEIGHT) / 2, 2 * Math.PI - Math.atan2(LANDER_HEIGHT, LANDER_WIDTH), Math.PI + Math.atan2(LANDER_HEIGHT, LANDER_WIDTH), true);
+        // CTX.fillStyle = state.get("theme").threeGradient("#EB8C0C", '#6a3b0c', "#401f1a", LANDER_WIDTH, 0, 0.5);
+        // CTX.fill();
 
-        CTX.beginPath();
-        CTX.moveTo(-LANDER_WIDTH / 2, 0);
-        CTX.lineTo(-LANDER_WIDTH , 5 *LANDER_HEIGHT / 8);
-        CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
-        CTX.closePath();
-        CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", "#4A4E6F", "#3D4264", LANDER_WIDTH / 2, -3 * LANDER_WIDTH / 4, 0.8);
-        CTX.fill();
+        // CTX.beginPath();
+        // CTX.moveTo(-LANDER_WIDTH / 2, 0);
+        // CTX.lineTo(-LANDER_WIDTH , 5 *LANDER_HEIGHT / 8);
+        // CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
+        // CTX.closePath();
+        // CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", "#4A4E6F", "#3D4264", LANDER_WIDTH / 2, -3 * LANDER_WIDTH / 4, 0.8);
+        // CTX.fill();
 
-        CTX.beginPath();
-        CTX.moveTo(LANDER_WIDTH / 2, 0);
-        CTX.lineTo(LANDER_WIDTH , 5 *LANDER_HEIGHT / 8);
-        CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
-        CTX.closePath();
-        CTX.fillStyle = state.get("theme").threeGradient("#3D4264", "#4A4E6F", "#DFE5E5", LANDER_WIDTH / 2, 3 * LANDER_WIDTH / 4, 0.2);
-        CTX.fill();
+        // CTX.beginPath();
+        // CTX.moveTo(LANDER_WIDTH / 2, 0);
+        // CTX.lineTo(LANDER_WIDTH , 5 *LANDER_HEIGHT / 8);
+        // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 2);
+        // CTX.closePath();
+        // CTX.fillStyle = state.get("theme").threeGradient("#3D4264", "#4A4E6F", "#DFE5E5", LANDER_WIDTH / 2, 3 * LANDER_WIDTH / 4, 0.2);
+        // CTX.fill();
 
-        CTX.beginPath();
-        CTX.moveTo(0, 0.2 * LANDER_HEIGHT);
-        CTX.lineTo(- LANDER_WIDTH / 4, LANDER_HEIGHT / 2);
-        CTX.lineTo(0, 0.8 * LANDER_HEIGHT);
-        CTX.lineTo(LANDER_WIDTH / 4, LANDER_HEIGHT / 2);
-        CTX.closePath();
-        CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", '#262b4f', "#4A4E6F", LANDER_WIDTH / 2, 0, 0.5);
-        CTX.fill();
+        // CTX.beginPath();
+        // CTX.moveTo(0, 0.2 * LANDER_HEIGHT);
+        // CTX.lineTo(- LANDER_WIDTH / 4, LANDER_HEIGHT / 2);
+        // CTX.lineTo(0, 0.8 * LANDER_HEIGHT);
+        // CTX.lineTo(LANDER_WIDTH / 4, LANDER_HEIGHT / 2);
+        // CTX.closePath();
+        // CTX.fillStyle = state.get("theme").threeGradient("#DFE5E5", '#262b4f', "#4A4E6F", LANDER_WIDTH / 2, 0, 0.5);
+        // CTX.fill();
 
         // Translate to the top-left corner of the lander so engine and booster
         // flames can be drawn from 0, 0
-        CTX.translate(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
+        // CTX.translate(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 2);
         if (fuel < _fuelLimit) {
             if (_engineOn || _rotatingLeft || _rotatingRight) {
-                CTX.fillStyle = randomBool() ? "#415B8C" : "#F3AFA3";
+                // CTX.fillStyle = randomBool() ? "#415B8C" : "#F3AFA3";
             }
 
             // Main engine flame
             if (_engineOn) {
                 const _flameHeight = randomBetween(10, 50);
                 const _flameMargin = 3;
-                CTX.beginPath();
-                CTX.moveTo(_flameMargin, LANDER_HEIGHT);
-                CTX.lineTo(LANDER_WIDTH - _flameMargin, LANDER_HEIGHT);
-                CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT + _flameHeight);
-                CTX.closePath();
-                CTX.fill();
+                // CTX.beginPath();
+                // CTX.moveTo(_flameMargin, LANDER_HEIGHT);
+                // CTX.lineTo(LANDER_WIDTH - _flameMargin, LANDER_HEIGHT);
+                // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT + _flameHeight);
+                // CTX.closePath();
+                // CTX.fill();
             }
 
             const _boosterLength = randomBetween(5, 25);
             // Right booster flame
             if (_rotatingLeft) {
-                CTX.beginPath();
-                CTX.moveTo(LANDER_WIDTH, 0);
-                CTX.lineTo(LANDER_WIDTH + _boosterLength, LANDER_HEIGHT * 0.05);
-                CTX.lineTo(LANDER_WIDTH, LANDER_HEIGHT * 0.1);
-                CTX.closePath();
-                CTX.fill();
+                // CTX.beginPath();
+                // CTX.moveTo(LANDER_WIDTH, 0);
+                // CTX.lineTo(LANDER_WIDTH + _boosterLength, LANDER_HEIGHT * 0.05);
+                // CTX.lineTo(LANDER_WIDTH, LANDER_HEIGHT * 0.1);
+                // CTX.closePath();
+                // CTX.fill();
             }
 
             // Left booster flame
             if (_rotatingRight) {
-                CTX.beginPath();
-                CTX.moveTo(0, 0);
-                CTX.lineTo(-_boosterLength, LANDER_HEIGHT * 0.05);
-                CTX.lineTo(0, LANDER_HEIGHT * 0.1);
-                CTX.closePath();
-                CTX.fill();
+                // CTX.beginPath();
+                // CTX.moveTo(0, 0);
+                // CTX.lineTo(-_boosterLength, LANDER_HEIGHT * 0.05);
+                // CTX.lineTo(0, LANDER_HEIGHT * 0.1);
+                // CTX.closePath();
+                // CTX.fill();
             }
         }
-        CTX.restore();
+        // CTX.restore();
     };
 
     const draw = (timeSinceStart, deltaTime) => {
@@ -499,12 +501,12 @@ export const makeLander = (state, onGameEnd) => {
         if (_position.y > TRANSITION_TO_SPACE) {
             _drawHUD();
         } else {
-            CTX.save();
+            // CTX.save();
             const animateHUDProgress = clampedProgress(LANDER_HEIGHT, -LANDER_HEIGHT, _position.y);
-            CTX.globalAlpha = transition(0, 1, animateHUDProgress, easeInOutSine);
-            CTX.translate(0, transition(16, 0, animateHUDProgress, easeInOutSine));
+            // CTX.globalAlpha = transition(0, 1, animateHUDProgress, easeInOutSine);
+            // CTX.translate(0, transition(16, 0, animateHUDProgress, easeInOutSine));
             _drawBottomHUD();
-            CTX.restore();
+            // CTX.restore();
         }
     };
 

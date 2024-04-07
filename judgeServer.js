@@ -1,10 +1,18 @@
 import express from 'express';
 import { fork } from 'child_process';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 app.post('/score', (req, res) => {
   const userCode = req.body.code;
@@ -14,7 +22,11 @@ app.post('/score', (req, res) => {
   child.send({ code: userCode });
 
   child.on('message', (result) => {
-    res.json({ score: result.score });
+    res.json({ 
+      score: result.score,
+      fuel: result.fuel,
+      time: result.time
+     });
 
     child.kill();
   });

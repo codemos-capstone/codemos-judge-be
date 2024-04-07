@@ -8,19 +8,19 @@ const makeLanderGradient = (
   color4,
   width = LANDER_WIDTH
 ) => {
-  const gradient = CTX.createLinearGradient(-width / 2, 0, width / 2, 0);
-  gradient.addColorStop(0, color1);
-  gradient.addColorStop(0.3, color2);
-  gradient.addColorStop(0.6, color3);
-  gradient.addColorStop(1, color4);
-  return gradient;
+  // const gradient = CTX.createLinearGradient(-width / 2, 0, width / 2, 0);
+  // gradient.addColorStop(0, color1);
+  // gradient.addColorStop(0.3, color2);
+  // gradient.addColorStop(0.6, color3);
+  // gradient.addColorStop(1, color4);
+  return 1//gradient;
 };
 
 const makeSpaceBackgroundGradient = (CTX, canvasHeight, backgroundColor) => {
-  const gradient = CTX.createLinearGradient(0, 0, 0, canvasHeight);
-  gradient.addColorStop(0, "#000");
-  gradient.addColorStop(0.5, backgroundColor);
-  return gradient;
+  // const gradient = CTX.createLinearGradient(0, 0, 0, canvasHeight);
+  // gradient.addColorStop(0, "#000");
+  // gradient.addColorStop(0.5, backgroundColor);
+  return 1//gradient;
 };
 
 export const makeTheme = (state) => {
@@ -54,11 +54,11 @@ export const makeTheme = (state) => {
         width
       ),
     threeGradient: (color1, color2, color3, width, offset, mid) =>{
-        const gradient = CTX.createLinearGradient(-width / 2 + offset, 0, width / 2 + offset, 0);
-        gradient.addColorStop(0, color1);
-        gradient.addColorStop(mid, color2);
-        gradient.addColorStop(1.0, color3)
-        return gradient;
+        // const gradient = CTX.createLinearGradient(-width / 2 + offset, 0, width / 2 + offset, 0);
+        // gradient.addColorStop(0, color1);
+        // gradient.addColorStop(mid, color2);
+        // gradient.addColorStop(1.0, color3)
+        return 1//gradient;
       },
     asteroid: "#898482",
     star: "#ffffff",
@@ -69,25 +69,25 @@ export const makeTheme = (state) => {
 
   const activeTheme = spaceTheme;
 
-  document.documentElement.style.setProperty(
-    "--background",
-    activeTheme.background
-  );
+  // document.documentElement.style.setProperty(
+  //   "--background",
+  //   activeTheme.background
+  // );
 
-  document.documentElement.style.setProperty(
-    "--body-font-color",
-    activeTheme.bodyFontColor
-  );
+  // document.documentElement.style.setProperty(
+  //   "--body-font-color",
+  //   activeTheme.bodyFontColor
+  // );
 
-  document.documentElement.style.setProperty(
-    "--headline-font-color",
-    activeTheme.headlineFontColor
-  );
+  // document.documentElement.style.setProperty(
+  //   "--headline-font-color",
+  //   activeTheme.headlineFontColor
+  // );
 
-  document.documentElement.style.setProperty(
-    "--meter-gradient",
-    activeTheme.meterGradient
-  );
+  // document.documentElement.style.setProperty(
+  //   "--meter-gradient",
+  //   activeTheme.meterGradient
+  // );
 
   return activeTheme;
 };

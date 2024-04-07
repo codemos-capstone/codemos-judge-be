@@ -1,52 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>API Test</title>
+  <style>
+    .code-container {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .code {
+      width: 50%;
+      padding-right: 10px;
+    }
+    .result {
+      width: 50%;
+      padding-left: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Code Judging API 테스트(동시처리)</h1>
 
-<script src="index.js" type="module"></script>
-
-<script>
-
-
-function resetGameHandler() {
-    onResetGame();
-}
-
-function applyCodeHandler() {
-applyCode(`
-
-var landAlt = -10;
+  <button onclick="submitCode(1)">Judge Code 1</button>
+  <button onclick="submitCode(2)">Judge Code 2</button>
+  <button onclick="submitCode(3)">Judge Code 3</button>
+  <div class="code-container">
+    <div class="code">
+      <h2>Code 1</h2>
+      <textarea id="code1" rows="10" cols="50">var landAlt = -10;
 function calcTargetAngle() {
-    var angle = 0;
-    angle -= (getVelocityX() * 4);
-    if (angle > 70) angle = 70
-    if (angle < -70) angle = -70
-    return angle
+  var angle = 0;
+  angle -= (getVelocityX() * 4);
+  if (angle > 70) angle = 70
+  if (angle < -70) angle = -70
+  return angle
 }
 function angleControl(targetAngle) {
-    if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
-        stopRightRotation();
-        rotateLeft();
-    } else {
-        stopLeftRotation();
-        rotateRight();       
-    }
+  if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+    stopRightRotation();
+    rotateLeft();
+  } else {
+    stopLeftRotation();
+    rotateRight();
+  }
 }
 function engineControl() {
-    if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
-        ((getAngle() > 0 && getVelocityX() < -0.1) ||
-        getAngle() < 0 && getVelocityX() > 2)) ||
-        (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
-        (Math.abs(getAngle()) < 90))
-        engineOn();
-    else
-        engineOff();
+  if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+       ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+      (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+     (Math.abs(getAngle()) < 90))
+    engineOn();
+  else
+    engineOff();
 }
 _mainLoop = function() {
-    // angleControl(calcTargetAngle())
-    engineControl()
-};
+  // angleControl(calcTargetAngle())
+  engineControl()
+};</textarea><br>
+    </div>
+    <div class="result">
+      <h2>Result 1</h2>
+      <pre id="result1"></pre>
+    </div>
+  </div>
 
-`);
+  <div class="code-container">
+    <div class="code">
+      <h2>Code 2</h2>
+      <textarea id="code2" rows="10" cols="50"></textarea><br>
+    </div>
+    <div class="result">
+      <h2>Result 2</h2>
+      <pre id="result2"></pre>
+    </div>
+  </div>
+
+  <div class="code-container">
+    <div class="code">
+      <h2>Code 3</h2>
+      <textarea id="code3" rows="10" cols="50"></textarea><br>
+    </div>
+    <div class="result">
+      <h2>Result 3</h2>
+      <pre id="result3"></pre>
+    </div>
+  </div>
+
+  <script>
+    function submitCode(codeNumber) {
+      const code = document.getElementById(`code${codeNumber}`).value;
+      
+      fetch('/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById(`result${codeNumber}`).textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
     }
-
-</script>
-
-<button class="apply-btn" onclick="applyCodeHandler()">Apply</button>
-<button class="apply-btn" onclick="resetGameHandler()">ResetGame</button>
+  </script>
+</body>
+</html>

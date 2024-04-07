@@ -58,20 +58,20 @@ export const makeLanderExplosion = (
       // Step 1: move to lander position and rotation. This is the position
       // which will be updated by the ballistic update. This rotation is the
       // angle of the lander on crash and will not be updated.
-      CTX.translate(position.x, position.y);
-      CTX.rotate(angle);
+      // CTX.translate(position.x, position.y);
+      // CTX.rotate(angle);
 
       // Step 2: adjust this chunk to its own offset position and own axis of
       // rotation. This is the rotation that's updated by the ballistic update
-      CTX.fillStyle = fill;
-      CTX.translate(0, -LANDER_HEIGHT / 2 + 4);
-      CTX.rotate(rotationAngle);
-      CTX.beginPath();
-      CTX.moveTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4 - 4);
-      CTX.lineTo(0, -LANDER_HEIGHT / 4 - 4);
-      CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4 - 4);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.fillStyle = fill;
+      // CTX.translate(0, -LANDER_HEIGHT / 2 + 4);
+      // CTX.rotate(rotationAngle);
+      // CTX.beginPath();
+      // CTX.moveTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4 - 4);
+      // CTX.lineTo(0, -LANDER_HEIGHT / 4 - 4);
+      // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4 - 4);
+      // CTX.closePath();
+      // CTX.fill();
     },
     useTerrain
   );
@@ -84,18 +84,18 @@ export const makeLanderExplosion = (
     LANDER_HEIGHT / 2,
     gradient,
     (CTX, position, _, rotationAngle, fill) => {
-      CTX.translate(position.x, position.y);
-      CTX.rotate(angle);
-      CTX.fillStyle = fill;
-      CTX.translate(0, LANDER_HEIGHT / 2);
-      CTX.rotate(rotationAngle);
-      CTX.beginPath();
-      CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
-      CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
-      CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
-      CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.translate(position.x, position.y);
+      // CTX.rotate(angle);
+      // CTX.fillStyle = fill;
+      // CTX.translate(0, LANDER_HEIGHT / 2);
+      // CTX.rotate(rotationAngle);
+      // CTX.beginPath();
+      // CTX.moveTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
+      // CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
+      // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
+      // CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
+      // CTX.closePath();
+      // CTX.fill();
     },
     useTerrain
   );
@@ -108,18 +108,18 @@ export const makeLanderExplosion = (
     LANDER_HEIGHT / 2,
     gradient,
     (CTX, position, _, rotationAngle, fill) => {
-      CTX.translate(position.x, position.y);
-      CTX.rotate(angle);
-      CTX.fillStyle = fill;
-      CTX.translate(0, 0);
-      CTX.rotate(rotationAngle);
-      CTX.beginPath();
-      CTX.lineTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
-      CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
-      CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
-      CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
-      CTX.closePath();
-      CTX.fill();
+      // CTX.translate(position.x, position.y);
+      // CTX.rotate(angle);
+      // CTX.fillStyle = fill;
+      // CTX.translate(0, 0);
+      // CTX.rotate(rotationAngle);
+      // CTX.beginPath();
+      // CTX.lineTo(-LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
+      // CTX.lineTo(LANDER_WIDTH / 2, -LANDER_HEIGHT / 4);
+      // CTX.lineTo(LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
+      // CTX.lineTo(-LANDER_WIDTH / 2, LANDER_HEIGHT / 4);
+      // CTX.closePath();
+      // CTX.fill();
     },
     useTerrain
   );

@@ -1,19 +1,19 @@
 import { VELOCITY_MULTIPLIER } from "./constants.js";
 
 export const generateCanvas = ({ width, height, attachNode }) => {
-  const element = document.createElement("canvas");
-  const context = element.getContext("2d");
+  const element = null//document.createElement("canvas");
+  const context = null//element.getContext("2d");
 
-  element.style.width = width + "px";
-  element.style.height = height + "px";
+  // element.style.width = width + "px";
+  // element.style.height = height + "px";
 
-  const scale = window.devicePixelRatio;
-  element.width = Math.floor(width * scale);
-  element.height = Math.floor(height * scale);
-  context.scale(scale, scale);
+  const scale = 1; //window.devicePixelRatio;
+  // element.width = Math.floor(width * scale);
+  // element.height = Math.floor(height * scale);
+  // context.scale(scale, scale);
 
 
-  return [context, width, height, element, scale];
+  return [context, width, height, element, 1];
 };
 
 // export const animate = (drawFunc) => {
