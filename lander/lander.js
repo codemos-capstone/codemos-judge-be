@@ -117,7 +117,7 @@ export const makeLander = (state, onGameEnd) => {
 
     const _isFixedPositionInSpace = () => _position.y < 0;
 
-    const _setGameEndData = (landed, struckByAsteroid = false) => {
+    const _setGameEndData = (landed, struckByAsteroid = false, isTimeOver = false) => {
         gameEndData = {
             isPressKey: _isPressKeyVal,
             landed,
@@ -148,6 +148,7 @@ export const makeLander = (state, onGameEnd) => {
             const score = scoreCrash(getAngleDeltaUpright(_angle), getVectorVelocity(_velocity));
 
             gameEndData.landerScore = score;
+            if (isTimeOver) gameEndData.landerScore = 100;
 
             _gameEndExplosion = makeLanderExplosion(state, _isFixedPositionInSpace() ? _displayPosition : _position, _velocity, _angle, !_isFixedPositionInSpace());
 
@@ -175,7 +176,7 @@ export const makeLander = (state, onGameEnd) => {
     const _updateProps = (deltaTime) => {
         const deltaTimeMultiplier = 1;// deltaTime / INTERVAL;
 
-        if (time > _timeLimit) _setGameEndData(false);
+        if (time > _timeLimit) _setGameEndData(false, false, true);
 
         _position.y = _position.y + deltaTimeMultiplier * _velocity.y;
 

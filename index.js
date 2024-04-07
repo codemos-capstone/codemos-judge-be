@@ -67,12 +67,17 @@ export function applyCode(userCode) {
     // if (!isFirst) clearInterval(newInterval);
     (function() {
         if (!hasAsyncLoop(code)) {
-            eval(code);
+            try {
+                eval(code);
+            } catch (error) {
+                process.send({ type: 'error', error: error.message });
+            }
             // newInterval = setInterval(() => {
             //     _mainLoop();
             // }, 1);
         } else {
-            console.log("사용자 정의 비동기 루프 사용 금지, _mainLoop만 사용.");
+            process.send({ type: 'error', error: "임의 비동기 루프 사용 시도 감지, _mainLoop만 사용" });
+            // console.log("사용자 정의 비동기 루프 사용 금지, _mainLoop만 사용.");
         }
     })();
     isFirst = false;
@@ -322,7 +327,7 @@ function onGameEnd(data) {
     landerControls.detachEventListeners();
     bonusPointsManager.hide();
 
-    const finalScore = data.landerScore + bonusPointsManager.getTotalPoints();
+    const finalScore = data.landerScore; //+ bonusPointsManager.getTotalPoints();
     const scoreDescription = data.landed ? landingScoreDescription(finalScore) : data.struckByAsteroid ? destroyedDescription() : crashScoreDescription(finalScore);
     const scoreForDisplay = Intl.NumberFormat().format(finalScore.toFixed(1));
 
@@ -340,7 +345,7 @@ function onGameEnd(data) {
 
     // console.log("fuel : 35.40L & time : 3864ms\ngame end 85.56521739130434 좋은 착륙 85.6\ngame end", finalScore, scoreDescription, scoreForDisplay);
     
-    process.send({ score: finalScore, fuel: data.fuel, time: data.time});
+    process.send({ type: 'result', score: finalScore * (data.landed ? 1.0 : -1.0), fuel: data.fuel, time: data.time});
 }
 
 function onResetGame() {
