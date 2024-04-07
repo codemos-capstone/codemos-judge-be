@@ -132,7 +132,9 @@ export const makeLander = (state, onGameEnd) => {
             speedPercent: percentProgress(0, CRASH_VELOCITY, getVectorVelocity(_velocity)),
             anglePercent: percentProgress(0, CRASH_ANGLE, getAngleDeltaUpright(_angle)),
             fuel: fuel,
-            time: time
+            time: time,
+            timeOver: isTimeOver,
+            timeLimit: _timeLimit
         };
         if (landed) {
             const score = scoreLanding(getAngleDeltaUpright(_angle), getVectorVelocity(_velocity));
@@ -148,7 +150,7 @@ export const makeLander = (state, onGameEnd) => {
             const score = scoreCrash(getAngleDeltaUpright(_angle), getVectorVelocity(_velocity));
 
             gameEndData.landerScore = score;
-            if (isTimeOver) gameEndData.landerScore = 100;
+            if (isTimeOver) gameEndData.landerScore = 999;
 
             _gameEndExplosion = makeLanderExplosion(state, _isFixedPositionInSpace() ? _displayPosition : _position, _velocity, _angle, !_isFixedPositionInSpace());
 

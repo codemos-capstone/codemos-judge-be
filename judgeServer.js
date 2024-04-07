@@ -18,7 +18,7 @@ app.post("/score", (req, res) => {
     const userCode = req.body.code;
 
     if (!userCode.includes("_mainLoop = function()")) {
-        return res.status(400).json({ error: "코드 문법 오류 : _mainLoop 할당 필수" });
+        return res.status(400).json({ error: "문법 오류 : _mainLoop 할당 필수" });
     }
 
     const child = fork("index.js", [], { execArgv: ["--experimental-modules"] });
@@ -28,10 +28,11 @@ app.post("/score", (req, res) => {
     child.on("message", (message) => {
         child.kill();
         if (message.type === "result") {
-            res.json({ score: message.score, fuel: message.fuel, time: message.time });
+            if (message.timeOver == true) res.json({ time: message.time, message: "시간 초과(" + message.timeLimit + "ms)" });
+            else res.json({ score: message.score, fuel: message.fuel, time: message.time });
         } else if (message.type === "error") {
             console.error("Error in child process:", message.error);
-            res.status(400).json({ error: "코드 문법 오류 : " + message.error });
+            res.status(400).json({ error: "문법 오류 : " + message.error });
         }
     });
 

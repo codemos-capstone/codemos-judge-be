@@ -345,7 +345,7 @@ function onGameEnd(data) {
 
     // console.log("fuel : 35.40L & time : 3864ms\ngame end 85.56521739130434 좋은 착륙 85.6\ngame end", finalScore, scoreDescription, scoreForDisplay);
     
-    process.send({ type: 'result', score: finalScore * (data.landed ? 1.0 : -1.0), fuel: data.fuel, time: data.time});
+    process.send({ type: 'result', score: finalScore * (data.landed ? 1.0 : -1.0), fuel: data.fuel, time: data.time, timeOver: data.timeOver, timeLimit: data.timeLimit});
 }
 
 function onResetGame() {
