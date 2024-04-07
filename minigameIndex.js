@@ -233,10 +233,10 @@ function onGameEnd(data) {
     showStatsAndResetControl(appState, lander, animationObject, { ...data, scoreDescription, scoreForDisplay }, landerControls.getHasKeyboard(), onResetGame);
 
     if (data.landed) {
-        audioManager.playLanding();
+        // audioManager.playLanding();
         tally.storeLanding();
     } else {
-        audioManager.playCrash();
+        // audioManager.playCrash();
         tally.storeCrash();
     }
 

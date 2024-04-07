@@ -12,7 +12,7 @@ export const makeConfetti = (state, amount, passedPosition, passedVelocity) => {
   const CTX = state.get("CTX");
   const canvasWidth = state.get("canvasWidth");
   const canvasHeight = state.get("canvasHeight");
-  const audio = state.get("audioManager");
+  const audio = null;
   const confettiTypeAmount = Math.round(amount / 2);
   const timeOfInit = Date.now();
   const visibilityDuration = 5_000;
@@ -89,7 +89,7 @@ export const makeConfetti = (state, amount, passedPosition, passedVelocity) => {
         confettiPieces.length = 0;
       } else {
         if (!hasPlayedAudio) {
-          audio.playConfetti();
+          // audio.playConfetti();
           hasPlayedAudio = true;
         }
         CTX.save();

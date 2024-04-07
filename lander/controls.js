@@ -15,17 +15,17 @@ export const makeControls = (state, lander, audioManager) => {
     if (key === "w" || key === "ArrowUp") {
       lander.engineOn();
       lander.setIsPressKey();
-      audioManager.playEngineSound();
+      // audioManager.playEngineSound();
     }
     if (key === "a" || key === "ArrowLeft") {
       lander.rotateLeft();
       lander.setIsPressKey();
-      audioManager.playBoosterSound1();
+      // audioManager.playBoosterSound1();
     }
     if (key === "d" || key === "ArrowRight") {
       lander.rotateRight();
       lander.setIsPressKey();
-      audioManager.playBoosterSound2();
+      // audioManager.playBoosterSound2();
     }
     hasKeyboard = true;
   }
@@ -33,30 +33,30 @@ export const makeControls = (state, lander, audioManager) => {
   function onKeyUp({ key }) {
     if (key === "w" || key === "ArrowUp") {
       lander.engineOff();
-      audioManager.stopEngineSound();
+      // audioManager.stopEngineSound();
     }
     if (key === "a" || key === "ArrowLeft") {
       lander.stopLeftRotation();
-      audioManager.stopBoosterSound1();
+      // audioManager.stopBoosterSound1();
     }
     if (key === "d" || key === "ArrowRight") {
       lander.stopRightRotation();
-      audioManager.stopBoosterSound2();
+      // audioManager.stopBoosterSound2();
     }
   }
 
   const activateTouchZone = (zoneName) => {
     if (zoneName === "left") {
       lander.rotateLeft();
-      audioManager.playBoosterSound1();
+      // audioManager.playBoosterSound1();
       showLeftOverlay = true;
     } else if (zoneName === "center") {
       lander.engineOn();
-      audioManager.playEngineSound();
+      // audioManager.playEngineSound();
       showCenterOverlay = true;
     } else {
       lander.rotateRight();
-      audioManager.playBoosterSound2();
+      // audioManager.playBoosterSound2();
       showRightOverlay = true;
     }
   };
@@ -64,15 +64,15 @@ export const makeControls = (state, lander, audioManager) => {
   const deactivateTouchZone = (zoneName) => {
     if (zoneName === "left") {
       lander.stopLeftRotation();
-      audioManager.stopBoosterSound1();
+      // audioManager.stopBoosterSound1();
       showLeftOverlay = false;
     } else if (zoneName === "center") {
       lander.engineOff();
-      audioManager.stopEngineSound();
+      // audioManager.stopEngineSound();
       showCenterOverlay = false;
     } else {
       lander.stopRightRotation();
-      audioManager.stopBoosterSound2();
+      // audioManager.stopBoosterSound2();
       showRightOverlay = false;
     }
   };

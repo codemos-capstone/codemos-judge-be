@@ -6,9 +6,7 @@ import { makeControls } from "./lander/controls.js";
 import { makeTerrain } from "./terrain.js";
 import { showStatsAndResetControl } from "./stats.js";
 import { manageInstructions } from "./instructions.js";
-import { makeAudioManager } from "./helpers/audio.js";
 import { makeStateManager } from "./helpers/state.js";
-import { makeConfetti } from "./lander/confetti.js";
 import { makeTallyManger } from "./tally.js";
 import { makeAsteroid } from "./asteroids.js";
 import { makeSpaceAsteroid } from "./spaceAsteroids.js";
@@ -19,7 +17,69 @@ import { makeTheme } from "./theme.js";
 import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "./helpers/constants.js";
 import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "./helpers/scoring.js";
 
-const audioManager = makeAudioManager();
+process.on('message', (data) => {
+    const userCode = data.code;
+  
+    applyCode(userCode);
+  
+    // process.send({ score });
+});
+
+function removeComment(code) {
+    return code
+    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
+}
+
+function hasAsyncLoop(code) {
+    const asyncLoopPatterns = [
+      /setInterval\s*\(/,
+      /setTimeout\s*\(/,
+      /requestAnimationFrame\s*\(/,
+      /process\.nextTick\s*\(/,
+      /setImmediate\s*\(/
+    ];
+
+    for (const pattern of asyncLoopPatterns) {
+      if (pattern.test(code)) {
+        return true;
+      }
+    }
+
+    return false;
+}
+
+var isFirst = true;
+export var _mainLoop;
+
+/*
+// TODO : 
+_mainLoop = function() {
+    // TODO : 
+};
+// TODO : 
+*/
+var afterApply = false;
+export function applyCode(userCode) {
+    afterApply = true;
+    console.log(userCode);
+    var code = removeComment(userCode); 
+
+    // if (!isFirst) clearInterval(newInterval);
+    (function() {
+        if (!hasAsyncLoop(code)) {
+            eval(code);
+            // newInterval = setInterval(() => {
+            //     _mainLoop();
+            // }, 1);
+        } else {
+            console.log("사용자 정의 비동기 루프 사용 금지, _mainLoop만 사용.");
+        }
+    })();
+    isFirst = false;
+}
+// window.applyCode = applyCode;
+
+const audioManager = null;
 const [CTX, canvasWidth, canvasHeight, canvasElement, scaleFactor] = generateCanvas({
     width: 500,
     height: 500,
@@ -35,7 +95,7 @@ const appState = makeStateManager()
     .set("canvasHeight", canvasHeight)
     .set("canvasElement", canvasElement)
     .set("scaleFactor", scaleFactor)
-    .set("audioManager", audioManager)
+    // .set("audioManager", audioManager)
     .set("challengeManager", challengeManager)
     .set("seededRandom", seededRandom);
 
@@ -181,7 +241,7 @@ let gameEnded = false;
 
 // INSTRUCTIONS SHOW/HIDE
 
-if (!instructions.hasClosedInstructions()) {
+if (!afterApply) {
     instructions.show();
     toyLanderControls.attachEventListeners();
 } else {
@@ -205,7 +265,7 @@ const animationObject = animate((timeSinceStart, deltaTime) => {
     terrain.draw();
     CTX.restore();
 
-    if (instructions.hasClosedInstructions()) {
+    if (afterApply) {
         landerControls.drawTouchOverlay();
 
         bonusPointsManager.draw(lander.getPosition().y < TRANSITION_TO_SPACE);
@@ -237,10 +297,6 @@ const animationObject = animate((timeSinceStart, deltaTime) => {
         }
 
         lander.draw(timeSinceStart, deltaTime);
-    } else {
-        toyLander.draw(deltaTime);
-
-        toyLanderControls.drawTouchOverlay();
     }
 });
 
@@ -273,17 +329,17 @@ function onGameEnd(data) {
     showStatsAndResetControl(appState, lander, animationObject, { ...data, scoreDescription, scoreForDisplay }, landerControls.getHasKeyboard(), onResetGame);
 
     if (data.landed) {
-        audioManager.playLanding();
+        // audioManager.playLanding();
         tally.storeLanding();
     } else {
-        audioManager.playCrash();
+        // audioManager.playCrash();
         tally.storeCrash();
     }
 
     tally.updateDisplay();
 
     console.log("fuel : 35.40L & time : 3864ms\ngame end 85.56521739130434 좋은 착륙 85.6\ngame end", finalScore, scoreDescription, scoreForDisplay);
-
+    process.send({ score });
 }
 
 function onResetGame() {
