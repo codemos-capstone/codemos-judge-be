@@ -1,142 +1,327 @@
 <!DOCTYPE html>
 <html>
-<head>
- <meta charset="UTF-8">
- <title>API Test</title>
- <style>
-   .container {
-     display: flex;
-   }
-   .code-container {
-     width: 33.33%;
-     padding: 10px;
-   }
-   .code {
-     height: 300px;
-   }
-   .result {
-     height: 200px;
-     padding-top: 10px;
-     white-space: pre-wrap;
-   }
-   .positive {
-     color: blue;
-   }
-   .negative {
-     color: red;
-   }
-   .timeout {
-     color: red;
-   }
- </style>
-</head>
-<body>
- <h1>Code Judging API 테스트(동시처리)</h1>
- <button onclick="submitCode(1)">Judge Code 1</button>
- <button onclick="submitCode(2)">Judge Code 2</button>
- <button onclick="submitCode(3)">Judge Code 3</button>
- <button onclick="submitCode(1);submitCode(2);submitCode(3);">동시채점</button>
- <div class="container">
-   <div class="code-container">
-     <div class="code">
-       <h2>Code 1</h2>
-       <textarea id="code1" rows="10" cols="50">var landAlt = -10;
+    <head>
+        <meta charset="UTF-8" />
+        <title>API Test</title>
+        <style>
+            .container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .code-container {
+                display: flex;
+                flex-direction: column;
+            }
+            .result {
+                height: 200px;
+                padding-top: 0px;
+                white-space: pre-wrap;
+            }
+            .positive {
+                color: blue;
+            }
+            .negative {
+                color: red;
+            }
+            .timeout {
+                color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Code Judging API 테스트(동시처리)</h1>
+        <button onclick="submitCode(1);submitCode(2);submitCode(3);submitCode(4);submitCode(5);submitCode(6);">동시채점</button>
+        <button onclick="submitCode(1)">Code 1</button>
+        <button onclick="submitCode(2)">Code 2</button>
+        <button onclick="submitCode(3)">Code 3</button>
+        <button onclick="submitCode(4)">Code 4</button>
+        <button onclick="submitCode(5)">Code 5</button>
+        <button onclick="submitCode(6)">Code 6</button>
+        <div class="container">
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 1 (정상)</h2>
+                    <textarea id="code1" rows="10" cols="50">
+var landAlt = -10;
 function calcTargetAngle() {
- var angle = 0;
- angle -= (getVelocityX() * 4);
- if (angle > 70) angle = 70
- if (angle < -70) angle = -70
- return angle
+    var angle = 0;
+    angle -= (getVelocityX() * 4);
+    if (angle > 70) angle = 70
+    if (angle < -70) angle = -70
+    return angle
 }
 function angleControl(targetAngle) {
- if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
-   stopRightRotation();
-   rotateLeft();
- } else {
-   stopLeftRotation();
-   rotateRight();
- }
+    if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+    stopRightRotation();
+    rotateLeft();
+    } else {
+    stopLeftRotation();
+    rotateRight();
+    }
 }
 function engineControl() {
- if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
-      ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
-     (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+    if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+        ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+        (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
     (Math.abs(getAngle()) < 90))
+    engineOn();
+    else
+    engineOff();
+}
+_mainLoop = function() {
+    // angleControl(calcTargetAngle())
+    engineControl()
+};</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result1"></pre>
+                </div>
+            </div>
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 2 (문법 오류)</h2>
+                    <textarea id="code2" rows="10" cols="50">
+var landAlt = -;
+function calcTargetAngle() {
+    var angle = 0;
+    angle -= (getVelocityX() * 4);
+    if (angle > 70) angle = 70
+    if (angle < -70) angle = -70
+    return angle
+}
+function angleControl(targetAngle) {
+    if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+    stopRightRotation();
+    rotateLeft();
+    } else {
+    stopLeftRotation();
+    rotateRight();
+    }
+}
+function engineControl() {
+    if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+        ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+        (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+    (Math.abs(getAngle()) < 90))
+    engineOn();
+    else
+    engineOff();
+}
+_mainLoop = function() {
+    // angleControl(calcTargetAngle())
+    engineControl()
+};</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result2"></pre>
+                </div>
+            </div>
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 3 (시간 초과)</h2>
+                    <textarea id="code3" rows="10" cols="50">
+var landAlt = -0;
+function calcTargetAngle() {
+    var angle = 0;
+    angle -= (getVelocityX() * 4);
+    if (angle > 70) angle = 70
+    if (angle < -70) angle = -70
+    return angle
+}
+function angleControl(targetAngle) {
+    if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+    stopRightRotation();
+    rotateLeft();
+    } else {
+    stopLeftRotation();
+    rotateRight();
+    }
+}
+function engineControl() {
+    if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+        ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+        (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+    (Math.abs(getAngle()) < 90))
+    engineOn();
+    else
+    engineOff();
+}
+_mainLoop = function() {
+    // angleControl(calcTargetAngle())
+    engineControl()
+};</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result3"></pre>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 4 (_mainLoop 할당 안함)</h2>
+                    <textarea id="code4" rows="10" cols="50">
+var landAlt = -10;
+function calcTargetAngle() {
+   var angle = 0;
+   angle -= (getVelocityX() * 4);
+   if (angle > 70) angle = 70
+   if (angle < -70) angle = -70
+   return angle
+}
+function angleControl(targetAngle) {
+   if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+   stopRightRotation();
+   rotateLeft();
+   } else {
+   stopLeftRotation();
+   rotateRight();
+   }
+}
+function engineControl() {
+   if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+       ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+       (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+   (Math.abs(getAngle()) < 90))
    engineOn();
- else
+   else
+   engineOff();
+}
+function() {
+   // angleControl(calcTargetAngle())
+   engineControl()
+};</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result4"></pre>
+                </div>
+            </div>
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 5 (임의 비동기 루프 사용 시도)</h2>
+                    <textarea id="code5" rows="10" cols="50">
+var landAlt = -10;
+function calcTargetAngle() {
+   var angle = 0;
+   angle -= (getVelocityX() * 4);
+   if (angle > 70) angle = 70
+   if (angle < -70) angle = -70
+   return angle
+}
+function angleControl(targetAngle) {
+   if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+   stopRightRotation();
+   rotateLeft();
+   } else {
+   stopLeftRotation();
+   rotateRight();
+   }
+}
+function engineControl() {
+   if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+       ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+       (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+   (Math.abs(getAngle()) < 90))
+   engineOn();
+   else
    engineOff();
 }
 _mainLoop = function() {
- // angleControl(calcTargetAngle())
- engineControl()
-};</textarea><br>
-     </div>
-     <div class="result">
-       <h2>Result 1</h2>
-       <pre id="result1"></pre>
-     </div>
-   </div>
-   <div class="code-container">
-     <div class="code">
-       <h2>Code 2</h2>
-       <textarea id="code2" rows="10" cols="50"></textarea><br>
-     </div>
-     <div class="result">
-       <h2>Result 2</h2>
-       <pre id="result2"></pre>
-     </div>
-   </div>
-   <div class="code-container">
-     <div class="code">
-       <h2>Code 3</h2>
-       <textarea id="code3" rows="10" cols="50"></textarea><br>
-     </div>
-     <div class="result">
-       <h2>Result 3</h2>
-       <pre id="result3"></pre>
-     </div>
-   </div>
- </div>
- <script>
-   function submitCode(codeNumber) {
-     const code = document.getElementById(`code${codeNumber}`).value;
-     const resultElement = document.getElementById(`result${codeNumber}`);
-     resultElement.textContent = '';
-     resultElement.classList.remove('positive', 'negative', 'timeout');
-     
-     const startTime = Date.now();
-     const timerInterval = setInterval(() => {
-       const elapsedTime = Date.now() - startTime;
-       resultElement.textContent = `채점 경과 시간: ${elapsedTime}ms`;
-       
-       if (elapsedTime > 5000) {
-         clearInterval(timerInterval);
-         resultElement.textContent = '채점 시간 초과 (5000ms 이상)';
-         resultElement.classList.add('timeout');
-       }
-     }, 10);
-
-     fetch('/score', {
-       method: 'POST',
-       headers: {
-         'Content-Type': 'application/json',
-       },
-       body: JSON.stringify({ code }),
-     })
-       .then(response => response.json())
-       .then(data => {
-         clearInterval(timerInterval);
-         const score = data.score;
-         const elapsedTime = Date.now() - startTime;
-         const resultClass = score >= 0 ? 'positive' : 'negative';
-         resultElement.textContent = `채점 경과 시간: ${elapsedTime}ms\n${JSON.stringify(data, null, 2)}`;
-         resultElement.classList.add(resultClass);
-       })
-       .catch(error => {
-         clearInterval(timerInterval);
-         console.error('Error:', error);
-       });
+};
+newInterval = setInterval(() => {
+    // angleControl(calcTargetAngle())
+    engineControl()
+}, 1);</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result5"></pre>
+                </div>
+            </div>
+            <div class="code-container">
+                <div class="code">
+                    <h2>Code 6 (추락)</h2>
+                    <textarea id="code6" rows="10" cols="50">
+var landAlt = -50;
+function calcTargetAngle() {
+   var angle = 0;
+   angle -= (getVelocityX() * 4);
+   if (angle > 70) angle = 70
+   if (angle < -70) angle = -70
+   return angle
+}
+function angleControl(targetAngle) {
+   if (getAngle() - targetAngle + (getRotationVelocity() * 70) > 0) {
+   stopRightRotation();
+   rotateLeft();
+   } else {
+   stopLeftRotation();
+   rotateRight();
    }
- </script>
-</body>
+}
+function engineControl() {
+   if (((getVelocityY() + Math.abs(getVelocityX()) > (getHeight() - landAlt) / 1600 && // 고도별 추락 속도 제한
+       ((getAngle() > 0 && getVelocityX() < -0.1) || getAngle() < 0 && getVelocityX() > 2)) ||
+       (getHeight() - landAlt < getVelocityY() * 3 && getVelocityY() / 20 > (getHeight() - landAlt) / (getVelocityY() * 75))) &&
+   (Math.abs(getAngle()) < 90))
+   engineOn();
+   else
+   engineOff();
+}
+_mainLoop = function() {
+   // angleControl(calcTargetAngle())
+   engineControl()
+};</textarea
+                    >
+                </div>
+                <div class="result">
+                    <pre id="result6"></pre>
+                </div>
+            </div>
+        </div>
+        <script>
+            function submitCode(codeNumber) {
+                const code = document.getElementById(`code${codeNumber}`).value;
+                const resultElement = document.getElementById(`result${codeNumber}`);
+                resultElement.textContent = "";
+                resultElement.classList.remove("positive", "negative", "timeout");
+
+                const startTime = Date.now();
+                const timerInterval = setInterval(() => {
+                    const elapsedTime = Date.now() - startTime;
+                    resultElement.textContent = `채점 경과 시간: ${elapsedTime}ms`;
+
+                    if (elapsedTime > 5000) {
+                        clearInterval(timerInterval);
+                        resultElement.textContent = "채점 시간 초과 (5000ms 이상)";
+                        resultElement.classList.add("timeout");
+                    }
+                }, 10);
+
+                fetch("/score", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ code }),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        clearInterval(timerInterval);
+                        const score = data.score;
+                        const elapsedTime = Date.now() - startTime;
+                        const resultClass = score >= 0 ? "positive" : "negative";
+                        resultElement.textContent = `채점 경과 시간: ${elapsedTime}ms\n${JSON.stringify(data, null, 2)}`;
+                        resultElement.classList.add(resultClass);
+                    })
+                    .catch((error) => {
+                        clearInterval(timerInterval);
+                        console.error("Error:", error);
+                    });
+            }
+        </script>
+    </body>
 </html>

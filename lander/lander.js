@@ -267,7 +267,11 @@ export const makeLander = (state, onGameEnd) => {
         }
 
         time += INTERVAL;
-        _mainLoop();
+        try {
+            _mainLoop();
+        } catch (error) {
+            process.send({ type: 'error', error: error.message });
+        }
     };
 
     const _drawHUD = () => {

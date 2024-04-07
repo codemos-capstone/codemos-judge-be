@@ -26,13 +26,13 @@ app.post("/score", (req, res) => {
     child.send({ code: userCode });
 
     child.on("message", (message) => {
+        child.kill();
         if (message.type === "result") {
             res.json({ score: message.score, fuel: message.fuel, time: message.time });
         } else if (message.type === "error") {
             console.error("Error in child process:", message.error);
             res.status(400).json({ error: "코드 문법 오류 : " + message.error });
         }
-        child.kill();
     });
 
     child.on("error", (error) => {
