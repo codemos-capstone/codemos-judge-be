@@ -272,7 +272,7 @@ export const makeLander = (state, onGameEnd) => {
         try {
             _mainLoop();
         } catch (error) {
-            process.send({ type: 'error', error: error.message });
+            process.send({ type: 'error', error: error.message });process.exit()
         }
     };
 

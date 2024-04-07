@@ -61,7 +61,7 @@ _mainLoop = function() {
 var afterApply = false;
 export function applyCode(userCode) {
     afterApply = true;
-    console.log(userCode);
+    // console.log(userCode);
     var code = removeComment(userCode); 
 
     // if (!isFirst) clearInterval(newInterval);
@@ -70,13 +70,13 @@ export function applyCode(userCode) {
             try {
                 eval(code);
             } catch (error) {
-                process.send({ type: 'error', error: error.message });
+                process.send({ type: 'error', error: error.message });process.exit()
             }
             // newInterval = setInterval(() => {
             //     _mainLoop();
             // }, 1);
         } else {
-            process.send({ type: 'error', error: "임의 비동기 루프 사용 시도 감지, _mainLoop만 사용" });
+            process.send({ type: 'error', error: "임의 비동기 루프 사용 시도 감지, _mainLoop만 사용" });process.exit()
             // console.log("사용자 정의 비동기 루프 사용 금지, _mainLoop만 사용.");
         }
     })();
@@ -207,18 +207,18 @@ export function stopRightRotation() {
 }
 
 export function logging() {
-    console.log(
-        "getVelocityX()        : " +
-            getVelocityX() +
-            "\ngetVelocityY()        : " +
-            getVelocityY() +
-            "\ngetAngle()            : " +
-            getAngle() +
-            "\ngetHeight()           : " +
-            getHeight() +
-            "\ngetRotationVelocity() : " +
-            getRotationVelocity()
-    );
+    // console.log(
+    //     "getVelocityX()        : " +
+    //         getVelocityX() +
+    //         "\ngetVelocityY()        : " +
+    //         getVelocityY() +
+    //         "\ngetAngle()            : " +
+    //         getAngle() +
+    //         "\ngetHeight()           : " +
+    //         getHeight() +
+    //         "\ngetRotationVelocity() : " +
+    //         getRotationVelocity()
+    // );
 }
 /*
 
@@ -344,8 +344,11 @@ function onGameEnd(data) {
     tally.updateDisplay();
 
     // console.log("fuel : 35.40L & time : 3864ms\ngame end 85.56521739130434 좋은 착륙 85.6\ngame end", finalScore, scoreDescription, scoreForDisplay);
-    
-    process.send({ type: 'result', score: finalScore * (data.landed ? 1.0 : -1.0), fuel: data.fuel, time: data.time, timeOver: data.timeOver, timeLimit: data.timeLimit});
+    try {
+        process.send({ type: 'result', score: finalScore * (data.landed ? 1.0 : -1.0), fuel: data.fuel, time: data.time, timeOver: data.timeOver, timeLimit: data.timeLimit});process.exit()
+    } catch (error) {
+        console.error('서버 과부하 에러 : ', error);
+    }
 }
 
 function onResetGame() {

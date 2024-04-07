@@ -28,10 +28,12 @@ app.post("/score", (req, res) => {
     child.on("message", (message) => {
         child.kill();
         if (message.type === "result") {
-            if (message.timeOver == true) res.json({ time: message.time, message: "시간 초과(" + message.timeLimit + "ms)" });
-            else res.json({ score: message.score, fuel: message.fuel, time: message.time });
+            if (message.timeOver == true)
+              res.json({ time: message.time, message: "시간 초과(" + message.timeLimit + "ms)"});
+            else
+              res.json({ score: message.score, fuel: message.fuel, time: message.time });
         } else if (message.type === "error") {
-            console.error("Error in child process:", message.error);
+            // console.error("Error in child process:", message.error);
             res.status(400).json({ error: "문법 오류 : " + message.error });
         }
     });

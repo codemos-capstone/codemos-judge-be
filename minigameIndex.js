@@ -109,11 +109,11 @@ export function stopRightRotation() {
 }
 
 export function logging() {
-    console.log("getVelocityX()        : " + getVelocityX()
-    + "\ngetVelocityY()        : " + getVelocityY()
-    + "\ngetAngle()            : " + getAngle()
-    + "\ngetHeight()           : " + getHeight()
-    + "\ngetRotationVelocity() : " + getRotationVelocity());
+    // console.log("getVelocityX()        : " + getVelocityX()
+    // + "\ngetVelocityY()        : " + getVelocityY()
+    // + "\ngetAngle()            : " + getAngle()
+    // + "\ngetHeight()           : " + getHeight()
+    // + "\ngetRotationVelocity() : " + getRotationVelocity());
 }
 /*
 
