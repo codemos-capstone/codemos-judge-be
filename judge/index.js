@@ -1,21 +1,21 @@
-import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "./helpers/helpers.js";
-import { makeLander } from "./lander/lander.js";
-import { makeToyLander } from "./lander/toylander.js";
+import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "../helpers/helpers.js";
+import { makeLander } from "../lander/lander.js";
+import { makeToyLander } from "../lander/toylander.js";
 import { makeStarfield } from "./starfield.js";
-import { makeControls } from "./lander/controls.js";
+import { makeControls } from "../lander/controls.js";
 import { makeTerrain } from "./terrain.js";
 import { showStatsAndResetControl } from "./stats.js";
 import { manageInstructions } from "./instructions.js";
-import { makeStateManager } from "./helpers/state.js";
+import { makeStateManager } from "../helpers/state.js";
 import { makeTallyManger } from "./tally.js";
 import { makeAsteroid } from "./asteroids.js";
 import { makeSpaceAsteroid } from "./spaceAsteroids.js";
 import { makeChallengeManager } from "./challenge.js";
-import { makeSeededRandom } from "./helpers/seededrandom.js";
+import { makeSeededRandom } from "../helpers/seededrandom.js";
 import { makeBonusPointsManager } from "./bonuspoints.js";
 import { makeTheme } from "./theme.js";
-import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "./helpers/constants.js";
-import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "./helpers/scoring.js";
+import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER } from "../helpers/constants.js";
+import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "../helpers/scoring.js";
 
 process.on('message', (data) => {
     const userCode = data.code;
@@ -30,26 +30,35 @@ function removeComment(code) {
     .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '');
 }
 
-function hasAsyncLoop(code) {
-    const asyncLoopPatterns = [
+function detectMaliciousCode(code) {
+    const maliciousPatterns = [
       /setInterval\s*\(/,
       /setTimeout\s*\(/,
       /requestAnimationFrame\s*\(/,
       /process\.nextTick\s*\(/,
-      /setImmediate\s*\(/
+      /setImmediate\s*\(/,
+      /eval\s*\(/,
+      /new\s+Function\s*\(/,
+      /process\.(exit|env)/,
+      /require\s*\(/,
+      /global\./,
+      /window\./,
+      /fetch\s*\(/,
+      /new\s+XMLHttpRequest\s*\(/,
     ];
-
-    for (const pattern of asyncLoopPatterns) {
+  
+    for (const pattern of maliciousPatterns) {
       if (pattern.test(code)) {
         return true;
       }
     }
-
+  
     return false;
-}
-
+  }
 var isFirst = true;
 export var _mainLoop;
+
+const console = {};
 
 /*
 // TODO : 
@@ -66,7 +75,7 @@ export function applyCode(userCode) {
 
     // if (!isFirst) clearInterval(newInterval);
     (function() {
-        if (!hasAsyncLoop(code)) {
+        if (!detectMaliciousCode(code)) {
             try {
                 eval(code);
             } catch (error) {
@@ -76,7 +85,7 @@ export function applyCode(userCode) {
             //     _mainLoop();
             // }, 1);
         } else {
-            process.send({ type: 'error', error: "임의 비동기 루프 사용 시도 감지, _mainLoop만 사용" });process.exit()
+            process.send({ type: 'error', error: "사용 금지 메서드 사용" });process.exit()
             // console.log("사용자 정의 비동기 루프 사용 금지, _mainLoop만 사용.");
         }
     })();

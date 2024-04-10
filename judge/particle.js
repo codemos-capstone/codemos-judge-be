@@ -1,5 +1,5 @@
-import { GRAVITY, INTERVAL } from "./helpers/constants.js";
-import { randomBool } from "./helpers/helpers.js";
+import { GRAVITY, INTERVAL } from "../helpers/constants.js";
+import { randomBool } from "../helpers/helpers.js";
 
 export const makeParticle = (
   state,

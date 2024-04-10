@@ -2,9 +2,9 @@ import {
   getVectorVelocity,
   transition,
   randomBetween,
-} from "./helpers/helpers.js";
-import { makeExplosion } from "./lander/explosion.js";
-import { LANDER_WIDTH, LANDER_HEIGHT } from "./helpers/constants.js";
+} from "../helpers/helpers.js";
+import { makeExplosion } from "../lander/explosion.js";
+import { LANDER_WIDTH, LANDER_HEIGHT } from "../helpers/constants.js";
 import { makeParticle } from "./particle.js";
 
 export const makeSpaceAsteroid = (

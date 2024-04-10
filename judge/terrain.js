@@ -2,8 +2,8 @@ import {
   seededShuffleArray,
   seededRandomBetween,
   getLineAngle,
-} from "./helpers/helpers.js";
-import { LANDER_WIDTH } from "./helpers/constants.js";
+} from "../helpers/helpers.js";
+import { LANDER_WIDTH } from "../helpers/constants.js";
 
 export const makeTerrain = (state) => {
   const CTX = state.get("CTX");

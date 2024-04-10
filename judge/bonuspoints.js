@@ -1,10 +1,10 @@
-import { LANDER_HEIGHT } from "./helpers/constants.js";
+import { LANDER_HEIGHT } from "../helpers/constants.js";
 import {
   clampedProgress,
   transition,
   easeOutBack,
   easeInOutSine,
-} from "./helpers/helpers.js";
+} from "../helpers/helpers.js";
 
 export const makeBonusPointsManager = (state) => {
   const CTX = state.get("CTX");

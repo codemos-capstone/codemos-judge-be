@@ -1,6 +1,6 @@
 import { randomBetween, jitterCoordinate } from "../helpers/helpers.js";
 import { LANDER_WIDTH, LANDER_HEIGHT } from "../helpers/constants.js";
-import { makeParticle } from "../particle.js";
+import { makeParticle } from "../judge/particle.js";
 
 export const makeExplosion = (
   state,

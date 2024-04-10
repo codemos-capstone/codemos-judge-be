@@ -6,7 +6,7 @@ import {
   clampedProgress,
   easeInExpo,
 } from "../helpers/helpers.js";
-import { makeParticle } from "../particle.js";
+import { makeParticle } from "../judge/particle.js";
 
 export const makeConfetti = (state, amount, passedPosition, passedVelocity) => {
   const CTX = state.get("CTX");

@@ -1,4 +1,4 @@
-import { transition, randomBetween } from "./helpers/helpers.js";
+import { transition, randomBetween } from "../helpers/helpers.js";
 
 export const makeStarfield = (state) => {
   const CTX = state.get("CTX");

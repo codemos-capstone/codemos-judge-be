@@ -1,23 +1,23 @@
-import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "./helpers/helpers.js";
-import { makeLander } from "./lander/lander.js";
-import { makeToyLander } from "./lander/toylander.js";
+import { animate, clampedProgress, generateCanvas, randomBetween, seededRandomBetween, seededRandomBool, transition } from "../helpers/helpers.js";
+import { makeLander } from "../lander/lander.js";
+import { makeToyLander } from "../lander/toylander.js";
 import { makeStarfield } from "./starfield.js";
-import { makeControls } from "./lander/controls.js";
+import { makeControls } from "../lander/controls.js";
 import { makeTerrain } from "./terrain.js";
 import { showStatsAndResetControl } from "./stats.js";
 import { manageInstructions } from "./instructions.js";
-import { makeAudioManager } from "./helpers/audio.js";
-import { makeStateManager } from "./helpers/state.js";
-import { makeConfetti } from "./lander/confetti.js";
+import { makeAudioManager } from "../helpers/audio.js";
+import { makeStateManager } from "../helpers/state.js";
+import { makeConfetti } from "../lander/confetti.js";
 import { makeTallyManger } from "./tally.js";
 import { makeAsteroid } from "./asteroids.js";
 import { makeSpaceAsteroid } from "./spaceAsteroids.js";
 import { makeChallengeManager } from "./challenge.js";
-import { makeSeededRandom } from "./helpers/seededrandom.js";
+import { makeSeededRandom } from "../helpers/seededrandom.js";
 import { makeBonusPointsManager } from "./bonuspoints.js";
 import { makeTheme } from "./theme.js";
-import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER  } from "./helpers/constants.js";
-import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "./helpers/scoring.js";
+import { TRANSITION_TO_SPACE, VELOCITY_MULTIPLIER  } from "../helpers/constants.js";
+import { landingScoreDescription, crashScoreDescription, destroyedDescription } from "../helpers/scoring.js";
 
 // SETUP
 
