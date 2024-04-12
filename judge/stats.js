@@ -7,7 +7,7 @@ export const showStatsAndResetControl = (
   onReset
 ) => {
   const buttonDelayTime = 1500;
-  const canShowShareSheet = navigator.canShare;
+  const canShowShareSheet = false; // navigator.canShare;
   const showStats = () => {
     // document.querySelector("#endGameStats").classList.add("show");
     // document.querySelector("#tryAgain").classList.add("loading");

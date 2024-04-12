@@ -58,6 +58,8 @@ function detectMaliciousCode(code) {
 var isFirst = true;
 export var _mainLoop;
 
+// 금지 함수
+
 const console = {};
 const setInterval = {};
 const setTimeout = {};
@@ -249,9 +251,9 @@ lander.rotateRight()            // 오른쪽 엔진 켜기
 lander.stopRightRotation()      // 오른쪽 엔진 끄기
 
 */
-let sendAsteroid = seededRandomBool(seededRandom);
-let asteroidCountdown = seededRandomBetween(2000, 15000, seededRandom);
-let asteroids = [makeAsteroid(appState, lander.getPosition, onAsteroidImpact)];
+// let sendAsteroid = seededRandomBool(seededRandom);
+// let asteroidCountdown = seededRandomBetween(2000, 15000, seededRandom);
+// let asteroids = [makeAsteroid(appState, lander.getPosition, onAsteroidImpact)];
 let spaceAsteroids = [];
 let randomConfetti = [];
 
