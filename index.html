@@ -294,9 +294,9 @@ _mainLoop = function() {
                     const elapsedTime = Date.now() - startTime;
                     resultElement.textContent = `채점 경과 시간: ${elapsedTime}ms`;
 
-                    if (elapsedTime > 5000) {
+                    if (elapsedTime > 50000) {
                         clearInterval(timerInterval);
-                        resultElement.textContent = "채점 시간 초과 (5000ms 이상)";
+                        resultElement.textContent = "채점 대기 시간 초과 (50000ms 이상)";
                         resultElement.classList.add("timeout");
                     }
                 }, 10);
