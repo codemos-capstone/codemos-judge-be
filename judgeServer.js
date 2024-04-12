@@ -18,9 +18,9 @@ app.get("/", (req, res) => {
 
 app.post("/score", (req, res) => {
     const userCode = req.body.code;
-    queue++;console.log("=".repeat(queue * 2));
+    console.log("queue : ", ++queue);
     if (!userCode.includes("_mainLoop = function()")) {
-        queue--;console.log("=".repeat(queue * 2));
+        console.log("queue : ", --queue);
         return res.status(400).json({ error: "문법 오류 : _mainLoop 할당 필수" });
     }
 
@@ -30,20 +30,19 @@ app.post("/score", (req, res) => {
 
     child.on("message", (message) => {
         child.kill();
-        queue--;console.log("=".repeat(queue * 2));
+        console.log("queue : ", --queue);
         if (message.type === "result") {
             if (message.timeOver == true)
               res.json({ time: message.time, message: "시간 초과(" + message.timeLimit + "ms)"});
             else
               res.json({ score: message.score, fuel: message.fuel, time: message.time });
         } else if (message.type === "error") {
-            // console.error("Error in child process:", message.error);
             res.status(400).json({ error: "문법 오류 : " + message.error });
         }
     });
 
     child.on("error", (error) => {
-        queue--;console.log("=".repeat(queue * 2));
+        console.log("queue : ", --queue);
         console.error("Error in child process:", error);
         res.status(500).json({ error: "채점 서버 오류" });
     });

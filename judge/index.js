@@ -59,6 +59,10 @@ var isFirst = true;
 export var _mainLoop;
 
 const console = {};
+const setInterval = {};
+const setTimeout = {};
+const requestAnimationFrame = {};
+const setImmediate = {};
 
 /*
 // TODO : 
