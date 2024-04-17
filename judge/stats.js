@@ -12,7 +12,7 @@ export const showStatsAndResetControl = (
     // document.querySelector("#endGameStats").classList.add("show");
     // document.querySelector("#tryAgain").classList.add("loading");
   };
-  const canCopyText = navigator && navigator.clipboard;
+  // const canCopyText = navigator && navigator.clipboard;
 
   const shareText = `Challenge #${state
     .get("challengeManager")
@@ -109,15 +109,15 @@ ${data.speed}mph | ${data.angle}° | ${data.rotationsFormatted} flip${
       // document.querySelector("#tryAgain").addEventListener("click", tryAgain);
     }, buttonDelayTime);
 
-    if (canShowShareSheet) {
-      // document
-      //   .querySelector("#share")
-      //   .addEventListener("click", ()=>{window.open('./leader.html', '_blank')});
-    } else if (canCopyText) {
-      // document
-      //   .querySelector("#copyText")
-      //   .addEventListener("click", ()=>{window.open('./leader.html', '_blank')});
-    }
+    // if (canShowShareSheet) {
+    //   document
+    //     .querySelector("#share")
+    //     .addEventListener("click", ()=>{window.open('./leader.html', '_blank')});
+    // } else if (canCopyText) {
+    //   document
+    //     .querySelector("#copyText")
+    //     .addEventListener("click", ()=>{window.open('./leader.html', '_blank')});
+    // }
 
     if (hasKeyboard) {
       // Delay showing the reset button in case the user is actively tapping
