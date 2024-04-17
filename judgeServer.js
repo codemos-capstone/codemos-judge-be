@@ -12,7 +12,7 @@ app.use(express.json());
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-app.get("/", (req, res) => {
+app.get("/api/test", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
