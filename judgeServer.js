@@ -6,7 +6,12 @@ import { fileURLToPath } from "url";
 const app = express();
 const port = 3000;
 
-var queue = 0;
+
+const secretToken = "tmp";
+const maxConcurrentRequests = 6;
+
+let queue = 0;
+let waitingQueue = [];
 
 app.use(express.json());
 
@@ -16,7 +21,17 @@ app.get("/api/test", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.post("/score", (req, res) => {
+const verifyMainServer = (req, res, next) => {
+    // const token = req.headers["x-secret-token"];
+    const token = "tmp";
+    if (token !== secretToken) {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+    next();
+};
+
+
+app.post("/score", verifyMainServer, (req, res) => {
     const userCode = req.body.code;
     console.log("queue : ", ++queue);
     if (!userCode.includes("_mainLoop = function()")) {
