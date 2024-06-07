@@ -4,8 +4,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
-//const port = 3000;
-const port = 3001;
+const port = 3000;
+// const port = 3001;
 
 const secretToken = "tmp";
 const maxConcurrentRequests = 6;
