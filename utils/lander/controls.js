@@ -1,4 +1,4 @@
-export const makeControls = (state, lander, audioManager) => {
+export const makeControls = (state, lander) => { //, audioManager
   const CTX = state.get("CTX");
   const canvasWidth = state.get("canvasWidth");
   const canvasHeight = state.get("canvasHeight");
@@ -14,18 +14,18 @@ export const makeControls = (state, lander, audioManager) => {
   function onKeyDown({ key }) {
     if (key === "w" || key === "ArrowUp") {
       lander.engineOn();
-      lander.setIsPressKey();
-      // audioManager.playEngineSound();
+      //lander.setIsPressKey();
+      //audioManager.playEngineSound();
     }
     if (key === "a" || key === "ArrowLeft") {
       lander.rotateLeft();
-      lander.setIsPressKey();
-      // audioManager.playBoosterSound1();
+      //lander.setIsPressKey();
+      //audioManager.playBoosterSound1();
     }
     if (key === "d" || key === "ArrowRight") {
       lander.rotateRight();
-      lander.setIsPressKey();
-      // audioManager.playBoosterSound2();
+      //lander.setIsPressKey();
+      //audioManager.playBoosterSound2();
     }
     hasKeyboard = true;
   }
@@ -33,30 +33,30 @@ export const makeControls = (state, lander, audioManager) => {
   function onKeyUp({ key }) {
     if (key === "w" || key === "ArrowUp") {
       lander.engineOff();
-      // audioManager.stopEngineSound();
+      //audioManager.stopEngineSound();
     }
     if (key === "a" || key === "ArrowLeft") {
       lander.stopLeftRotation();
-      // audioManager.stopBoosterSound1();
+      //audioManager.stopBoosterSound1();
     }
     if (key === "d" || key === "ArrowRight") {
       lander.stopRightRotation();
-      // audioManager.stopBoosterSound2();
+      //audioManager.stopBoosterSound2();
     }
   }
 
   const activateTouchZone = (zoneName) => {
     if (zoneName === "left") {
       lander.rotateLeft();
-      // audioManager.playBoosterSound1();
+      //audioManager.playBoosterSound1();
       showLeftOverlay = true;
     } else if (zoneName === "center") {
       lander.engineOn();
-      // audioManager.playEngineSound();
+      //audioManager.playEngineSound();
       showCenterOverlay = true;
     } else {
       lander.rotateRight();
-      // audioManager.playBoosterSound2();
+      //audioManager.playBoosterSound2();
       showRightOverlay = true;
     }
   };
@@ -64,15 +64,15 @@ export const makeControls = (state, lander, audioManager) => {
   const deactivateTouchZone = (zoneName) => {
     if (zoneName === "left") {
       lander.stopLeftRotation();
-      // audioManager.stopBoosterSound1();
+      //audioManager.stopBoosterSound1();
       showLeftOverlay = false;
     } else if (zoneName === "center") {
       lander.engineOff();
-      // audioManager.stopEngineSound();
+      //audioManager.stopEngineSound();
       showCenterOverlay = false;
     } else {
       lander.stopRightRotation();
-      // audioManager.stopBoosterSound2();
+      //audioManager.stopBoosterSound2();
       showRightOverlay = false;
     }
   };
@@ -148,37 +148,37 @@ export const makeControls = (state, lander, audioManager) => {
   }
 
   const attachEventListeners = () => {
-    // document.addEventListener("keydown", onKeyDown);
-    // document.addEventListener("keyup", onKeyUp);
-    // canvasElement.addEventListener("touchstart", onTouchStart);
-    // canvasElement.addEventListener("touchmove", onTouchMove);
-    // canvasElement.addEventListener("touchend", onTouchEnd);
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("keyup", onKeyUp);
+    canvasElement.addEventListener("touchstart", onTouchStart);
+    canvasElement.addEventListener("touchmove", onTouchMove);
+    canvasElement.addEventListener("touchend", onTouchEnd);
   };
 
   const detachEventListeners = () => {
-    // document.removeEventListener("keydown", onKeyDown);
-    // document.removeEventListener("keyup", onKeyUp);
-    // canvasElement.removeEventListener("touchstart", onTouchStart);
-    // canvasElement.removeEventListener("touchmove", onTouchMove);
-    // canvasElement.removeEventListener("touchend", onTouchEnd);
+    document.removeEventListener("keydown", onKeyDown);
+    document.removeEventListener("keyup", onKeyUp);
+    canvasElement.removeEventListener("touchstart", onTouchStart);
+    canvasElement.removeEventListener("touchmove", onTouchMove);
+    canvasElement.removeEventListener("touchend", onTouchEnd);
   };
 
   const drawTouchOverlay = () => {
-    // CTX.save();
-    // CTX.fillStyle = "rgba(255, 255, 255, 0.07)";
+    CTX.save();
+    CTX.fillStyle = "rgba(255, 255, 255, 0.07)";
     if (showLeftOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("left");
-      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
     if (showCenterOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("center");
-      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
     if (showRightOverlay) {
       const { startPixel, widthInPixels } = getColumnBoundary("right");
-      // CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
+      CTX.fillRect(startPixel, 0, widthInPixels, canvasHeight);
     }
-    // CTX.restore();
+    CTX.restore();
   };
 
   return {

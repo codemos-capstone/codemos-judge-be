@@ -1,5 +1,5 @@
-import { GRAVITY, INTERVAL } from "../helpers/constants.js";
-import { randomBool } from "../helpers/helpers.js";
+import { GRAVITY, LAND_MAX_FRAME } from "./helpers/constants.js";
+import { randomBool } from "./helpers/helpers.js";
 
 export const makeParticle = (
   state,
@@ -25,21 +25,19 @@ export const makeParticle = (
   let rotationAngle = Math.PI * 2;
   let rotationVelocity = 0;
   let headingDeg = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI);
-  let stopped = false;
+  let frameCount = 0;
 
-  const update = (deltaTime) => {
-    const deltaTimeMultiplier = deltaTime / INTERVAL;
-
+  const update = () => {
     velocity.x = startVelocity.x + Math.cos((headingDeg * Math.PI) / 180);
-    velocity.y += deltaTimeMultiplier * GRAVITY;
+    velocity.y += GRAVITY;
     rotationVelocity += rotationDirection
-      ? deltaTimeMultiplier * 0.1
-      : deltaTimeMultiplier * -0.1;
+      ? 0.1
+      : -0.1;
     rotationAngle = (rotationAngle + rotationVelocity) * friction;
 
     let prospectiveNextPosition = {
-      x: position.x + deltaTimeMultiplier * velocity.x,
-      y: position.y + deltaTimeMultiplier * velocity.y,
+      x: position.x + velocity.x,
+      y: position.y + velocity.y,
     };
 
     if (useTerrain && prospectiveNextPosition.y >= landingData.terrainHeight) {
@@ -63,11 +61,9 @@ export const makeParticle = (
         velocity.x = velocity.x * -friction;
         velocity.y = velocity.y * -friction;
 
-        if (countSimilarCoordinates(positionLog) > 5) stopped = true;
-
         prospectiveNextPosition = {
-          x: position.x + deltaTimeMultiplier * velocity.x,
-          y: position.y + deltaTimeMultiplier * velocity.y,
+          x: position.x + velocity.x,
+          y: position.y + velocity.y,
         };
 
         // Provide the point just prior to collision so particles reflect off
@@ -91,10 +87,10 @@ export const makeParticle = (
     position.y = prospectiveNextPosition.y;
   };
 
-  const draw = (deltaTime) => {
-    if (!stopped) update(deltaTime);
+  const draw = () => {
+    if (frameCount < LAND_MAX_FRAME) update();
 
-    // CTX.save();
+    CTX.save();
 
     if (customDraw) {
       customDraw(
@@ -106,13 +102,15 @@ export const makeParticle = (
         rotationVelocity
       );
     } else {
-      // CTX.fillStyle = fill;
-      // CTX.translate(position.x, position.y);
-      // CTX.rotate(rotationAngle);
-      // CTX.fillRect(-width / 2, -height / 2, width, height);
+      CTX.fillStyle = fill;
+      CTX.translate(position.x, position.y);
+      CTX.rotate(rotationAngle);
+      CTX.fillRect(-width / 2, -height / 2, width, height);
     }
 
-    // CTX.restore();
+    CTX.restore();
+
+    frameCount++;
   };
 
   return { draw, getPosition: () => position, getVelocity: () => velocity };
@@ -150,7 +148,6 @@ function isShapeInPath(
   });
 
   return dots.find(({ x, y }) =>
-    // CTX.isPointInPath(path, x * scaleFactor, y * scaleFactor)
-    true
+    CTX.isPointInPath(path, x * scaleFactor, y * scaleFactor)
   );
 }

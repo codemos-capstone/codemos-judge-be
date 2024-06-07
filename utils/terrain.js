@@ -2,8 +2,8 @@ import {
   seededShuffleArray,
   seededRandomBetween,
   getLineAngle,
-} from "../helpers/helpers.js";
-import { LANDER_WIDTH } from "../helpers/constants.js";
+} from "./helpers/helpers.js";
+import { LANDER_WIDTH } from "./helpers/constants.js";
 
 export const makeTerrain = (state) => {
   const CTX = state.get("CTX");
@@ -160,10 +160,10 @@ export const makeTerrain = (state) => {
   reGenerate();
 
   const draw = () => {
-    // CTX.save();
-    // CTX.fillStyle = state.get("theme").terrain;
-    // CTX.fill(terrainPath2D);
-    // CTX.restore();
+    CTX.save();
+    CTX.fillStyle = state.get("theme").terrain;
+    CTX.fill(terrainPath2D);
+    CTX.restore();
 
     if (showLandingSurfaces) {
       landingSurfaces.forEach((surface) => {
@@ -173,22 +173,22 @@ export const makeTerrain = (state) => {
           .get("bonusPointsManager")
           .getPointValue(surface.name)}`;
 
-        // CTX.save();
-        // CTX.fillStyle = state.get("theme").infoFontColor;
-        // CTX.font = "400 14px -apple-system, BlinkMacSystemFont, sans-serif";
-        // CTX.fillText(
-        //   text,
-        //   startPixel + widthInPixels / 2 - CTX.measureText(text).width / 2,
-        //   surface.height - 10
-        // );
-        // CTX.lineWidth = 2;
-        // CTX.strokeStyle = "white";
-        // CTX.beginPath();
-        // CTX.moveTo(startPixel, surface.height);
-        // CTX.lineTo(startPixel + widthInPixels, surface.height);
-        // CTX.closePath();
-        // CTX.stroke();
-        // CTX.restore();
+        CTX.save();
+        CTX.fillStyle = state.get("theme").infoFontColor;
+        CTX.font = "400 14px -apple-system, BlinkMacSystemFont, sans-serif";
+        CTX.fillText(
+          text,
+          startPixel + widthInPixels / 2 - CTX.measureText(text).width / 2,
+          surface.height - 10
+        );
+        CTX.lineWidth = 2;
+        CTX.strokeStyle = "white";
+        CTX.beginPath();
+        CTX.moveTo(startPixel, surface.height);
+        CTX.lineTo(startPixel + widthInPixels, surface.height);
+        CTX.closePath();
+        CTX.stroke();
+        CTX.restore();
       });
     }
   };

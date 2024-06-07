@@ -29,21 +29,21 @@ export const makeAudioManager = () => {
         if (!hasInitialized) {
             hasInitialized = true;
             audioCTX = new AudioContext();
-            engineFileBuffer = _loadFile(audioCTX, "./audio/engine.mp3");
-            boosterFileBuffer = _loadFile(audioCTX, "./audio/booster.mp3");
-            crash1FileBuffer = _loadFile(audioCTX, "./audio/crash1.mp3");
-            crash2FileBuffer = _loadFile(audioCTX, "./audio/crash2.mp3");
-            landing1FileBuffer = _loadFile(audioCTX, "./audio/landing1.mp3");
-            landing2FileBuffer = _loadFile(audioCTX, "./audio/landing2.mp3");
-            confetti1FileBuffer = _loadFile(audioCTX, "./audio/confetti1.mp3");
-            confetti2FileBuffer = _loadFile(audioCTX, "./audio/confetti2.mp3");
-            babyFileBuffer = _loadFile(audioCTX, "./audio/baby.mp3");
+            engineFileBuffer = _loadFile(audioCTX, "assets/audio/engine.mp3");
+            boosterFileBuffer = _loadFile(audioCTX, "assets/audio/booster.mp3");
+            crash1FileBuffer = _loadFile(audioCTX, "assets/audio/crash1.mp3");
+            crash2FileBuffer = _loadFile(audioCTX, "assets/audio/crash2.mp3");
+            landing1FileBuffer = _loadFile(audioCTX, "assets/audio/landing1.mp3");
+            landing2FileBuffer = _loadFile(audioCTX, "assets/audio/landing2.mp3");
+            confetti1FileBuffer = _loadFile(audioCTX, "assets/audio/confetti1.mp3");
+            confetti2FileBuffer = _loadFile(audioCTX, "assets/audio/confetti2.mp3");
+            babyFileBuffer = _loadFile(audioCTX, "assets/audio/baby.mp3");
 
             // Play theme in a loop in the background on instantiation. Playing some
             // audio continuously with the HTML audio API will allow audio via the Web
             // Audio API to play on the main sound channel in iOS, rather than the
             // ringer channel.
-            themeAudio = new Audio("./audio/theme.mp3");
+            themeAudio = new Audio("assets/audio/theme.mp3");
             themeAudio.loop = true;
             //themeAudio.play();
         }

@@ -1,65 +1,43 @@
 import { VELOCITY_MULTIPLIER } from "./constants.js";
 
 export const generateCanvas = ({ width, height, attachNode }) => {
-  const element = null//document.createElement("canvas");
-  const context = null//element.getContext("2d");
+  const element = document.createElement("canvas");
+  const context = element.getContext("2d");
 
-  // element.style.width = width + "px";
-  // element.style.height = height + "px";
+  element.style.width = width + "px";
+  element.style.height = height + "px";
 
-  const scale = 1; //window.devicePixelRatio;
-  // element.width = Math.floor(width * scale);
-  // element.height = Math.floor(height * scale);
-  // context.scale(scale, scale);
+  const scale = window.devicePixelRatio;
+  element.width = Math.floor(width * scale);
+  element.height = Math.floor(height * scale);
+  context.scale(scale, scale);
 
+  document.querySelector(attachNode).appendChild(element);
 
-  return [context, width, height, element, 1];
+  return [context, width, height, element, scale];
 };
-
-// export const animate = (drawFunc) => {
-//   let startTime = Date.now();
-//   let currentFrameTime = Date.now();
-//   let previousTimestamp = false;
-
-//   const resetStartTime = () => (startTime = Date.now());
-
-//   const drawFuncContainer = (timestamp) => {
-//     currentFrameTime = Date.now();
-//     const deltaTime = previousTimestamp
-//       ? timestamp - previousTimestamp
-//       : performance.now() - timestamp;
-//     drawFunc(currentFrameTime - startTime, deltaTime);
-//     window.requestAnimationFrame(drawFuncContainer);
-//     previousTimestamp = timestamp;
-//   };
-
-//   window.requestAnimationFrame(drawFuncContainer);
-
-//   return { resetStartTime };
-// };
-
 
 export const animate = (drawFunc) => {
   let startTime = Date.now();
-  let previousTimestamp = null;
-  let timeoutId = null;
+  let currentFrameTime = Date.now();
+  let previousTimestamp = false;
+  let animationID;
 
   const resetStartTime = () => (startTime = Date.now());
 
-  const drawFuncContainer = () => {
-    const currentFrameTime = Date.now();
-    const deltaTime = previousTimestamp ? currentFrameTime - previousTimestamp : 0;
+  const drawFuncContainer = (timestamp) => {
+    currentFrameTime = Date.now();
+    const deltaTime = previousTimestamp
+      ? timestamp - previousTimestamp
+      : performance.now() - timestamp;
     drawFunc(currentFrameTime - startTime, deltaTime);
-    previousTimestamp = currentFrameTime;
-    timeoutId = setTimeout(drawFuncContainer, 0);
+    window.requestAnimationFrame(drawFuncContainer);
+    previousTimestamp = timestamp;
   };
 
-  timeoutId = setTimeout(drawFuncContainer, 0);
+  animationID = window.requestAnimationFrame(drawFuncContainer);
 
-  return {
-    resetStartTime,
-    stop: () => clearTimeout(timeoutId),
-  };
+  return { resetStartTime, animationID};
 };
 
 export const randomBool = (probability = 0.5) => Math.random() >= probability;
@@ -88,13 +66,20 @@ export const getAngleDeltaUprightWithSign = (angle) => {
   return repeatingAngle > 180 ? repeatingAngle - 360 : repeatingAngle;
 };
 
-export const velocityInMPH = (velocity) =>
+export const velocityInMPS = (velocity) =>
   Intl.NumberFormat().format(
-    (getVectorVelocity(velocity) * VELOCITY_MULTIPLIER).toFixed(1)
+    (getVectorVelocity(velocity) * VELOCITY_MULTIPLIER * 1.609 * 1000 / 3600).toFixed(1)
   );
 
-export const heightInFeet = (yPos, groundedHeight) =>
-  Intl.NumberFormat().format(-1 * Math.round((yPos - groundedHeight) / 3.5));
+
+export const velocityInMPS_s = (velocity) =>
+  Intl.NumberFormat().format(
+    (velocity * VELOCITY_MULTIPLIER * 1.609 * 1000 / 3600).toFixed(1)
+  );
+  
+
+export const heightInMeter = (yPos, groundedHeight) =>
+  Intl.NumberFormat().format((-1 * ((yPos - groundedHeight) / 12)).toFixed(1));
 
 export const progress = (start, end, current) =>
   (current - start) / (end - start);
